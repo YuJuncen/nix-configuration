@@ -3,4 +3,4 @@
 PATH=$PATH:"$busybox/bin"
 
 mkdir -p $out
-cp $src $out/
+cp $src $out/nord.rasi

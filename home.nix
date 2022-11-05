@@ -12,7 +12,7 @@ home-manager.users.hillium = {
 
     programs.rofi = {
         enable = true;
-        font = "monospace 18";
+        font = "serif 24";
         theme = "${pkgs.rofi-nord-theme}/nord.rasi";
         extraConfig = {
             show-icons = true;
