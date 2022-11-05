@@ -10,9 +10,19 @@ home-manager.users.hillium = {
        feh
     ];
 
+    programs.rofi = {
+        enable = true;
+        font = "monospace 18";
+        theme = "${pkgs.rofi-nord-theme}/nord.rasi";
+        extraConfig = {
+            show-icons = true;
+            sort = true;
+        };
+    };
+
    i18n.inputMethod = {
       enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [fcitx5-rime fcitx5-gtk fcitx5-chinese-addons];
+      fcitx5.addons = with pkgs; [fcitx5-gtk fcitx5-chinese-addons];
     }; 
 
     gtk = {

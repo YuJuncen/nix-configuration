@@ -10,7 +10,16 @@
     nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = attrs;
-      modules = [ ./configuration.nix
+      modules = let 
+        overlayConfig = { nixpkgs, ... }: rec {
+          nixpkgs.overlays = let
+            add-rofi-nord-theme = _self: super: with super; {
+              rofi-nord-theme = import ./derivations/rofi-nord-theme super;
+            };
+          in [ add-rofi-nord-theme ];
+        };
+            in [  ./configuration.nix
+                  overlayConfig
                   ./home.nix
                   ./uncommon/hardware-config.nix
                 ];
