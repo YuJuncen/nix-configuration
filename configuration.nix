@@ -5,7 +5,7 @@
 { config, pkgs, lib, home-manager, ... }:
 {
   imports =
-    [ 
+    [
       home-manager.nixosModule
     ];
 
@@ -27,7 +27,7 @@
 
 
   time.timeZone = "Asia/Shanghai";
-  
+
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -61,15 +61,15 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.hillium = {
-     isNormalUser = true;
-     shell = pkgs.fish;
-     extraGroups = [ "wheel" "networkmanager" "audio" "docker" "libvirtd" ];
-     packages = with pkgs; [
-       firefox
-       virt-manager
-     ];
-     hashedPassword = "$6$FFGkdebWQ9l83MQ3$IsQqoZ9AC7qJSActPp0MnAHLx1cCcQoCbem/VIQmDpwjA83yv5gCzCRMW7LALEN4Z5jPMZtXXlJyCcE1RGWiX.";
-   };
+    isNormalUser = true;
+    shell = pkgs.fish;
+    extraGroups = [ "wheel" "networkmanager" "audio" "docker" "libvirtd" ];
+    packages = with pkgs; [
+      firefox
+      virt-manager
+    ];
+    hashedPassword = "$6$FFGkdebWQ9l83MQ3$IsQqoZ9AC7qJSActPp0MnAHLx1cCcQoCbem/VIQmDpwjA83yv5gCzCRMW7LALEN4Z5jPMZtXXlJyCcE1RGWiX.";
+  };
   programs.fish.enable = true;
 
   # List packages installed in system profile. To search, run:
@@ -81,11 +81,11 @@
     git
     fzf
     fish
-    
+
     konsole
     vscode
     kitty
-    
+
     geoclue2
   ];
 
@@ -121,18 +121,18 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
-  nix.settings.substituters = ["https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"];
+  nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
   virtualisation.docker = {
     enable = true;
     daemon.settings = {
-      registry-mirrors = ["https://docker.mirrors.ustc.edu.cn/"];
+      registry-mirrors = [ "https://docker.mirrors.ustc.edu.cn/" ];
     };
   };
 
   # night shift!
   services.geoclue2.enable = true;
   location.provider = "geoclue2";
- 
+
   services.redshift = {
     enable = true;
   };
@@ -151,7 +151,5 @@
     enable = true;
   };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
