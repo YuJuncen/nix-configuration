@@ -1,7 +1,7 @@
 { home-manager, pkgs,... } :
 {
 home-manager.users.hillium = {
-    home.stateVersion = version;
+    home.stateVersion = "22.05";
 
     home.packages = with pkgs; [
        cider 
