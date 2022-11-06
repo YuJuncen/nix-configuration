@@ -7,7 +7,7 @@ let
     size = 10.0;
   };
   window = {
-    border = 0;
+    border = 2;
     titlebar = true;
     commands = [
       {
