@@ -37,7 +37,13 @@
         package = pkgs.orchis-theme;
         name = "Orchis";
       };
+      font = {
+        package = pkgs.noto-fonts-cjk;
+        name = "Noto Sans CJK SC";
+      };
     };
+
+    fonts.fontconfig.enable = true;
 
     qt = {
       enable = true;
