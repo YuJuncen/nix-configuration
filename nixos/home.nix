@@ -47,7 +47,7 @@
     };
 
     services = {
-      polybar = import ./softwares/polybar.nix {};
+      polybar = import ./softwares/polybar { inherit pkgs; };
     };
   };
 }
