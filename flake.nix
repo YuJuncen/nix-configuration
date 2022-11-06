@@ -11,7 +11,7 @@
 
     nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = attrs;
+      specialArgs = attrs // { colors = import ./nixos/color.nix; };
       modules =
         let
           overlayConfig = { nixpkgs, ... }: rec {

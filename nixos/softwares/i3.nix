@@ -1,8 +1,8 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, colors, ... }:
 
 let
   fonts = {
-    names = [ "Noto Serif CJK SC", "Noto Sans CJK SC", "monospace" ];
+    names = [ "Noto Serif CJK SC" "Noto Sans CJK SC" "monospace" ];
     size = 10.0;
   };
   window = {
@@ -51,21 +51,29 @@ let
       always = true;
     }
   ];
+  colorSchema = with colors; ''
+#                       Background          Border              Text     Indictor           Child Boarder 
+client.focused          ${primary}          ${primary-darker}   ${white} ${primary}         ${primary-darker}
+client.focused_inactive ${primary-darker}   ${primary-darkest}  ${white} ${primary-darker}  ${primary-darkest}
+client.unfocused        ${background}       ${background}       ${white} ${background}      ${background}
+client.urgent           ${alert}            ${background}       ${white} ${alert}           ${alert} 
+  '';
 in
 {
-  i3 = {
     enable = true;
 
     config = {
-      inherit fonts, window, startup;
+      inherit fonts window startup;
+
       terminal = "kitty";
       keybindings = lib.mkOptionDefault (
         vimConsistent.bindings // macOSConsistent.bindings
       );
-      mods = lib.mkOptionDefault vimConsistent.modes
+      modes = lib.mkOptionDefault vimConsistent.modes;
+      extraConfig = "${colorSchema}";
+      modifier = m;
       
       # We are going to use polybar, disable the default bar.
-      bar = lib.mkForce [ ];
+      bars = lib.mkForce [ ];
     };
-  };
 }
