@@ -7,6 +7,7 @@
   imports =
     [
       home-manager.nixosModule
+      ./nixos/foundation.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -121,7 +122,6 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
-  nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
   virtualisation.docker = {
     enable = true;
     daemon.settings = {
@@ -137,19 +137,21 @@
     enable = true;
   };
 
-  # Perhaps we can use a more lightweighted key ring manager here. 
-  programs.gnupg.agent = {
-    enable = true;
-  };
-  services.gnome.gnome-keyring.enable = true;
+  services.polybar = (import ./nixos/softwares/polybar pkgs).service;
 
-  # Nearly always open bluetooth.
-  hardware.bluetooth.enable = true;
+    # Perhaps we can use a more lightweighted key ring manager here. 
+    programs.gnupg.agent = {
+  enable = true;
+};
+services.gnome.gnome-keyring.enable = true;
 
-  # Virtual machines!
-  virtualisation.libvirtd = {
-    enable = true;
-  };
+# Nearly always open bluetooth.
+hardware.bluetooth.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+# Virtual machines!
+virtualisation.libvirtd = {
+enable = true;
+};
+
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

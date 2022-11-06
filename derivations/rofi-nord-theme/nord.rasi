@@ -97,7 +97,7 @@ element selected active {
 }
 
 element-icon {
-    size:   2em;
+    size:   1em;
 }
 
 element-text {
