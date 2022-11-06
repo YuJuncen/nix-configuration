@@ -45,5 +45,9 @@
         name = "adwaita-dark";
       };
     };
+
+    services = {
+      polybar = import ./softwares/polybar.nix {};
+    };
   };
 }

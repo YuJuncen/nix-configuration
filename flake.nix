@@ -27,7 +27,6 @@
         [
           ./configuration.nix
           overlayConfig
-          ./home.nix
           ./uncommon/hardware-config.nix
         ];
     };
