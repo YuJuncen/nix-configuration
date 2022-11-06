@@ -101,6 +101,7 @@
     noto-fonts-cjk-serif
     noto-fonts-cjk-sans
     noto-fonts-emoji
+    siji
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

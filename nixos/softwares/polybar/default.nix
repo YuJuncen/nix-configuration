@@ -7,6 +7,14 @@
   };
 
   config = ./config.ini;
+  extraConfig = ''
+[module/fcitx]
+type = custom/script
+exec = ${./polybar-fcitx5-script.sh}
+tail = true
+interval = 0
+format-prefix = "KBD"
+  '';
 
   enable = true;
   script = ''
