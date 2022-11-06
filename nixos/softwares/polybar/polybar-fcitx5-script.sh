@@ -1,10 +1,11 @@
-#!/bin/bash
+#! /run/current-system/sw/bin/bash
 
 # Downloaded from https://raw.githubusercontent.com/RRRRRm/polybar-fcitx5-script/main/polybar-fcitx5-script.sh.
 # Author: RRRRRm, unlicenced.
+# The shebang and the path has been changed to adapt the nixOS, and I have removed the CAPs LOCK support.
 
-CAPS_SYMBOL="%{F#c0392b}⇧%{F-}"
 IMLIST_FILE="/tmp/fcitx5-imlist"
+PATH=$PATH:/run/current-system/sw/bin
 
 capslock() {
   xset -q | grep Caps | grep -q on && {
@@ -54,10 +55,6 @@ print_pretty_name() {
   name=$(imlist | grep "^$(current)," | cut -d',' -f5)
   if [[ -z "$name" ]]; then
     return
-  fi
-  if capslock > /dev/null; then
-    # ${var^^} means uppercase, when CapsLock is on, let the name uppercase
-    name="${name^^}${CAPS_SYMBOL}"
   fi
   echo "${name}"
 }
