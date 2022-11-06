@@ -1,4 +1,4 @@
-{ home-manager, pkgs, ... }:
+{ home-manager, pkgs, ... } @ ctx:
 {
   home-manager.users.hillium = {
     home.stateVersion = "22.05";
@@ -9,6 +9,8 @@
       gnome.seahorse
       feh
     ];
+
+    xsession.windowManager.i3 = import ./softwares/i3.nix ctx;
 
     programs.rofi = {
       enable = true;

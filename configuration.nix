@@ -16,15 +16,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   services.xserver.enable = true;
-  services.xserver.windowManager.i3 = {
-    enable = true;
-    extraPackages = with pkgs; [
-      dmenu
-      i3blocks
-      i3lock
-      rofi
-    ];
-  };
   environment.pathsToLink = [ "/libexec" ];
 
 

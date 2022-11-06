@@ -8,12 +8,12 @@
 
   config = ./config.ini;
   extraConfig = ''
-[module/fcitx]
-type = custom/script
-exec = ${./polybar-fcitx5-script.sh}
-tail = true
-interval = 0
-'';
+    [module/fcitx]
+    type = custom/script
+    exec = ${./polybar-fcitx5-script.sh}
+    tail = true
+    interval = 0
+  '';
 
   enable = true;
   script = ''
