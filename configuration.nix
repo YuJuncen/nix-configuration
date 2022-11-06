@@ -16,6 +16,12 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   services.xserver.enable = true;
+  services.xserver.windowManager.i3 = {
+    enable = true;
+    extraPackages = with pkgs; [
+        rofi
+    ];
+  };
   environment.pathsToLink = [ "/libexec" ];
 
 
