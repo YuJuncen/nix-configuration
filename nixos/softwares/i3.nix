@@ -1,3 +1,5 @@
+# Place: home-manager
+
 { pkgs, lib, colors, ... }:
 
 let
@@ -48,39 +50,39 @@ let
   };
   startup = [
     {
-      command = "feh --bg-fill ~/.background-image";
+      command = "${pkgs.feh}/bin/feh --bg-fill ~/.background-image";
     }
   ];
   colorSchema = with colors; ''
-#                       Background          Border              Text     Indictor           Child Boarder 
-client.focused          ${primary-16}       ${primary}          ${white} ${secondary}       ${primary}
-client.focused_inactive ${primary-dim}      ${primary-dimmer}   ${white} ${secondary}       ${primary-dimmer}
-client.unfocused        ${background}       ${background}       ${white} ${background}      ${background}
-client.urgent           ${alert}            ${background}       ${white} ${alert}           ${alert} 
+    #                       Background          Border              Text     Indictor           Child Boarder 
+    client.focused          ${primary-16}       ${primary}          ${white} ${secondary}       ${primary}
+    client.focused_inactive ${primary-dim}      ${primary-dimmer}   ${white} ${secondary}       ${primary-dimmer}
+    client.unfocused        ${background}       ${background}       ${white} ${background}      ${background}
+    client.urgent           ${alert}            ${background}       ${white} ${alert}           ${alert} 
   '';
   rofiInsteadOfDMenu = {
     "${m}+d" = "exec --no-startup-id rofi -show drun";
     "${m}+Shift+d" = "exec --no-startup-id rofi -show run";
   };
-  mergeAll = builtins.foldl' (a: b: a // b) {};
+  mergeAll = builtins.foldl' (a: b: a // b) { };
 in
 {
-    enable = true;
+  enable = true;
 
-    extraConfig = "${colorSchema}";
-    config = {
-      inherit fonts window startup;
+  extraConfig = "${colorSchema}";
+  config = {
+    inherit fonts window startup;
 
-      terminal = "kitty";
-      keybindings = lib.mkOptionDefault (mergeAll [
-        vimConsistent.bindings
-        macOSConsistent.bindings
-        rofiInsteadOfDMenu
-      ]);
-      modes = lib.mkOptionDefault vimConsistent.modes;
-      modifier = m;
-      
-      # We are going to use polybar, disable the default bar.
-      bars = lib.mkForce [ ];
-    };
+    terminal = "kitty";
+    keybindings = lib.mkOptionDefault (mergeAll [
+      vimConsistent.bindings
+      macOSConsistent.bindings
+      rofiInsteadOfDMenu
+    ]);
+    modes = lib.mkOptionDefault vimConsistent.modes;
+    modifier = m;
+
+    # We are going to use polybar, disable the default bar.
+    bars = lib.mkForce [ ];
+  };
 }

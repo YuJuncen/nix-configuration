@@ -1,8 +1,11 @@
+# Place: home manager.
+
 { pkgs, ... }:
 
 {
   package = pkgs.polybar.override {
     i3GapsSupport = true;
+    githubSupport = true;
     i3Support = true;
   };
 
@@ -17,6 +20,7 @@
 
   enable = true;
   script = ''
+    polybar --version
     polybar primary &
   '';
 }

@@ -12,25 +12,25 @@
 # --selection-color: #62BD9133;
 
 {
-    background = "#373c38";
-    background-lighter = "#474C48";
+  background = "#373c38";
+  background-lighter = "#474C48";
 
-    foreground = "#C5C8C6";
+  foreground = "#C5C8C6";
 
-    # We are going to use the dark color schema.
-    # where "dark" in fact means light...
-    primary-32 = "#227D51";
-    primary-16 = "#328D61";
-    primary    = "#429D71";
+  # We are going to use the dark color schema.
+  # where "dark" in fact means light...
+  primary-32 = "#227D51";
+  primary-16 = "#328D61";
+  primary = "#429D71";
 
-    primary-dim     = "#628D81";
-    primary-dimmer  = "#729D91";
+  primary-dim = "#628D81";
+  primary-dimmer = "#729D91";
 
 
-    secondary = "#86C166";
+  secondary = "#86C166";
 
-    alert = "#D43708";
-    disabled = "#575C58";
+  alert = "#D43708";
+  disabled = "#575C58";
 
-    white = "#F3F3F3";
+  white = "#F3F3F3";
 }

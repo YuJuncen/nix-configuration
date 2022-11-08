@@ -10,7 +10,11 @@
       feh
     ];
 
-    xsession.windowManager.i3 = import ./softwares/i3.nix ctx;
+    xsession = {
+      windowManager.i3 = import ./softwares/i3.nix ctx;
+      numlock = { enable = true; };
+      enable = true;
+    };
 
     programs.rofi = {
       enable = true;

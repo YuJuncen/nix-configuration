@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, home-manager, ... }:
+{ config, pkgs, lib, home-manager, ... } @ ctx:
 {
   imports =
     [
@@ -15,12 +15,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  services.xserver.enable = true;
-  services.xserver.windowManager.i3 = {
+  services.xserver = {
     enable = true;
-    extraPackages = with pkgs; [
-        rofi
-    ];
+    displayManager = { lightdm = import ./nixos/softwares/lightdm.nix ctx;  };
+    windowManager.i3 = { enable = true; extraPackages = [pkgs.rofi]; };
   };
   environment.pathsToLink = [ "/libexec" ];
 
