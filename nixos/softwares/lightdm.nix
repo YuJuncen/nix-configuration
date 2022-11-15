@@ -1,9 +1,16 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
     enable = true;
-    greeters.mini = {
+    greeters.gtk = {
         enable = true;
-        user = "hillium";
+        theme = {
+            package = pkgs.orchis-theme;
+            name = "Orchis";
+        };
+        indicators = ["~clock" "~spacer" "~session"];
+        extraConfig = ''
+        xfg-dpi = 192
+        '';
     };
 }

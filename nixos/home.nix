@@ -7,7 +7,11 @@
       cider
       dconf
       gnome.seahorse
+      gnome.gnome-boxes
       feh
+
+      firefox
+      vscode
     ];
 
     xsession = {

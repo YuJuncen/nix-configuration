@@ -61,10 +61,6 @@
     isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = [ "wheel" "networkmanager" "audio" "docker" "libvirtd" ];
-    packages = with pkgs; [
-      firefox
-      virt-manager
-    ];
     hashedPassword = "$6$FFGkdebWQ9l83MQ3$IsQqoZ9AC7qJSActPp0MnAHLx1cCcQoCbem/VIQmDpwjA83yv5gCzCRMW7LALEN4Z5jPMZtXXlJyCcE1RGWiX.";
   };
   programs.fish.enable = true;
@@ -79,16 +75,16 @@
     fzf
     fish
 
-    konsole
-    vscode
     kitty
 
     geoclue2
+    wayland
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "vscode"
-  ];
+  nixpkgs.config.allowUnfree = true;
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
 
   fonts.fonts = with pkgs; [
     noto-fonts
