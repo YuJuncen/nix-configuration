@@ -1,18 +1,24 @@
 { home-manager, pkgs, ... } @ ctx:
 {
   home-manager.users.hillium = {
-    home.stateVersion = "22.05";
+    home = {
+      stateVersion = "22.05";
+      sessionVariables = {
+        EDITOR = "vim";
+        PATH = "$PATH:$HOME/.cargo/bin";
+      };
+      packages = with pkgs; [
+        cider
+        dconf
+        gnome.seahorse
+        gnome.gnome-boxes
+        feh
 
-    home.packages = with pkgs; [
-      cider
-      dconf
-      gnome.seahorse
-      gnome.gnome-boxes
-      feh
+        firefox
+        vscode
 
-      firefox
-      vscode
-    ];
+      ];
+    };
 
     xsession = {
       windowManager.i3 = import ./softwares/i3.nix ctx;

@@ -17,8 +17,8 @@
 
   services.xserver = {
     enable = true;
-    displayManager = { lightdm = import ./nixos/softwares/lightdm.nix ctx;  };
-    windowManager.i3 = { enable = true; extraPackages = [pkgs.rofi]; };
+    displayManager = { lightdm = import ./nixos/softwares/lightdm.nix ctx; };
+    windowManager.i3 = { enable = true; extraPackages = [ pkgs.rofi ]; };
   };
   environment.pathsToLink = [ "/libexec" ];
 
