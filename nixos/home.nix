@@ -17,6 +17,8 @@
         firefox
         vscode
 
+        # Because Lark doesn't support Firefox...
+        google-chrome
       ];
     };
 
