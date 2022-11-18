@@ -17,11 +17,12 @@
           overlayConfig = { nixpkgs, ... }: rec {
             nixpkgs.overlays =
               let
-                add-rofi-nord-theme = _self: super: with super; {
+                add-custom-derivations = _self: super: with super; {
                   rofi-nord-theme = import ./derivations/rofi-nord-theme super;
+                  mono-gtk-theme = import ./derivations/mono-gtk-theme super;
                 };
               in
-              [ add-rofi-nord-theme ];
+              [ add-custom-derivations ];
           };
         in
         [

@@ -16,17 +16,36 @@
 
         firefox
         vscode
+        openssl
+
+        flameshot
+        clipmenu
+        xclip
+
 
         # Because Lark doesn't support Firefox...
         google-chrome
+        zoom-us
       ];
+      pointerCursor = {
+        gtk.enable = true;
+        x11.enable = true;
+        package = pkgs.yaru-theme;
+        name = "Yaru";
+      };
+
     };
+
 
     xsession = {
       windowManager.i3 = import ./softwares/i3.nix ctx;
       numlock = { enable = true; };
       enable = true;
     };
+
+    xresources.extraConfig = ''
+    Xft.dpi: 192
+    '';
 
     programs.rofi = {
       enable = true;
@@ -50,7 +69,7 @@
         name = "Tela";
       };
       theme = {
-        package = pkgs.orchis-theme;
+        package = pkgs.mono-gtk-theme;
         name = "Orchis";
       };
       font = {

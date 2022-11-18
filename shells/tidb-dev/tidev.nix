@@ -18,7 +18,7 @@ let
     gocode-gomod
     godef
     golint
-    go-delve
+    delve
     impl
 
     go_1_19
@@ -27,7 +27,7 @@ in
 pkgs.mkShell {
   name = "TiDEV";
   packages =
-    tikv-deps ++ tidb-deps ++ [ fish ];
+    tikv-deps ++ tidb-deps ++ [ pkgs.fish ];
   shellHook = ''
     export PATH=$PATH:$HOME/.cargo/bin:$HOME/go/bin
     export HTTP_PROXY=http://127.0.0.1:1080
@@ -35,7 +35,5 @@ pkgs.mkShell {
     bold=$'\e[1m'
     reset=$'\e[0m'
     echo "PROXY=$bold$HTTP_PROXY$reset; Happy Hacking!"
-
-    exec fish
   '';
 }

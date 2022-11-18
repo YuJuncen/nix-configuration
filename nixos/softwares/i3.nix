@@ -46,6 +46,8 @@ let
   macOSConsistent = {
     bindings = {
       "${m}+Ctrl+q" = "exec dm-tool lock";
+      "${m}+Shift+4" = "exec flameshot gui -p ~/Images/Screenshots";
+      "${m}+Shift+Ctrl+4" = "exec flameshot gui";
     };
   };
   startup = [
