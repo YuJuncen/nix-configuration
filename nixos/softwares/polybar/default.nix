@@ -20,7 +20,7 @@
 
   enable = true;
   script = ''
-    polybar --version
+    export PATH=$PATH:${pkgs.i3}/bin
     polybar primary &
   '';
 }

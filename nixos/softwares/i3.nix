@@ -50,11 +50,11 @@ let
       "${m}+Shift+Ctrl+4" = "exec flameshot gui";
     };
   };
-  startup = [
-    {
-      command = "${pkgs.feh}/bin/feh --bg-fill ~/.background-image";
-    }
-  ];
+  # startup = [
+  #   {
+  #     command = "${pkgs.feh}/bin/feh --bg-fill ~/.background-image";
+  #   }
+  # ];
   colorSchema = with colors; ''
     #                       Background          Border              Text     Indictor           Child Boarder 
     client.focused          ${primary-16}       ${primary}          ${white} ${secondary}       ${primary}
@@ -73,7 +73,7 @@ in
 
   extraConfig = "${colorSchema}";
   config = {
-    inherit fonts window startup;
+    inherit fonts window ;
 
     terminal = "kitty";
     keybindings = lib.mkOptionDefault (mergeAll [

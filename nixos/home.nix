@@ -10,8 +10,6 @@
       packages = with pkgs; [
         cider
         dconf
-        gnome.seahorse
-        gnome.gnome-boxes
         feh
 
         firefox
@@ -26,6 +24,11 @@
         # Because Lark doesn't support Firefox...
         google-chrome
         zoom-us
+
+        gnome.nautilus
+        gnome.eog
+        gnome.seahorse
+        gnome.gnome-bluetooth
       ];
       pointerCursor = {
         gtk.enable = true;
@@ -69,7 +72,7 @@
         name = "Tela";
       };
       theme = {
-        package = pkgs.mono-gtk-theme;
+        package = pkgs.orchis-theme;
         name = "Orchis";
       };
       font = {
