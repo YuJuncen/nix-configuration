@@ -18,6 +18,30 @@ let
           all = true;
         };
       }
+      {
+        command = "resize set 640 480";
+        criteria = {
+          window_role = "pop_up";
+        };
+      }
+      {
+        command = "resize set 640 480";
+        criteria = {
+          window_role = "task_dialog";
+        };
+      }
+      {
+        command = "floating enable";
+        criteria = {
+          window_role = "pop_up";
+        };
+      }
+      {
+        command = "floating enable";
+        criteria = {
+          window_role = "task_dialog";
+        };
+      }
     ];
   };
   # Super as mod.
@@ -46,15 +70,30 @@ let
   macOSConsistent = {
     bindings = {
       "${m}+Ctrl+q" = "exec dm-tool lock";
-      "${m}+Shift+4" = "exec flameshot gui -p ~/Images/Screenshots";
-      "${m}+Shift+Ctrl+4" = "exec flameshot gui";
+      "${m}+Shift+Ctrl+s" = "exec flameshot gui -p ~/Images/Screenshots";
+      "${m}+Shift+s" = "exec flameshot gui";
     };
   };
-  # startup = [
-  #   {
-  #     command = "${pkgs.feh}/bin/feh --bg-fill ~/.background-image";
-  #   }
-  # ];
+  personalWorkspaceConfig = {
+    bindings = {
+      "${m}+z" = "workspace Terminals";
+      "${m}+Shift+z" = "move to workspace Terimals";
+      "${m}+c" = "workspace Browsers";
+      "${m}+Shift+c" = "move to workspace Browsers";
+      "${m}+x" = "workspace Extra";
+      "${m}+Shift+x" = "move to workspace Extra";
+    };
+  };
+  startup = [
+    {
+      command = "${pkgs.feh}/bin/feh --bg-fill ~/.background-image";
+      notification = false;
+    }
+    {
+      command = "${pkgs.goldendict}/bin/goldendict";
+      workspace = "Extra";
+    }
+  ];
   colorSchema = with colors; ''
     #                       Background          Border              Text     Indictor           Child Boarder 
     client.focused          ${primary-16}       ${primary}          ${white} ${secondary}       ${primary}
@@ -73,16 +112,22 @@ in
 
   extraConfig = "${colorSchema}";
   config = {
-    inherit fonts window ;
+    inherit fonts window startup;
 
     terminal = "kitty";
     keybindings = lib.mkOptionDefault (mergeAll [
       vimConsistent.bindings
       macOSConsistent.bindings
       rofiInsteadOfDMenu
+      personalWorkspaceConfig.bindings
     ]);
     modes = lib.mkOptionDefault vimConsistent.modes;
     modifier = m;
+
+    floating = {
+      criteria = [{ title = "GoldenDict"; } { title = "cider"; }];
+      border = 0;
+    };
 
     # We are going to use polybar, disable the default bar.
     bars = lib.mkForce [ ];

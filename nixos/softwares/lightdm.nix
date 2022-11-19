@@ -5,12 +5,9 @@
   greeters.gtk = {
     enable = true;
     theme = {
-      package = pkgs.orchis-theme;
-      name = "Orchis";
+      package = pkgs.mono-gtk-theme;
+      name = "MonoThemeDark";
     };
     indicators = [ "~clock" "~spacer" "~session" ];
-    extraConfig = ''
-      xfg-dpi = 192
-    '';
   };
 }

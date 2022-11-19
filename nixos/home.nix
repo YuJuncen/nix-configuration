@@ -8,18 +8,18 @@
         PATH = "$PATH:$HOME/.cargo/bin";
       };
       packages = with pkgs; [
-        cider
         dconf
         feh
 
         firefox
         vscode
         openssl
+        unzip
+        virt-manager
 
         flameshot
         clipmenu
         xclip
-
 
         # Because Lark doesn't support Firefox...
         google-chrome
@@ -29,6 +29,12 @@
         gnome.eog
         gnome.seahorse
         gnome.gnome-bluetooth
+        gnome.gnome-weather
+
+        cider
+        calibre
+        goldendict
+        thunderbird
       ];
       pointerCursor = {
         gtk.enable = true;
@@ -47,7 +53,7 @@
     };
 
     xresources.extraConfig = ''
-    Xft.dpi: 192
+      Xft.dpi: 192
     '';
 
     programs.rofi = {
@@ -72,8 +78,8 @@
         name = "Tela";
       };
       theme = {
-        package = pkgs.orchis-theme;
-        name = "Orchis";
+        package = pkgs.mono-gtk-theme;
+        name = "MonoThemeDark";
       };
       font = {
         package = pkgs.noto-fonts-cjk;
@@ -93,7 +99,8 @@
     };
 
     services = {
-      polybar = import ./softwares/polybar { inherit pkgs; };
+      polybar = import ./softwares/polybar ctx;
+      dunst = import ./softwares/dunst.nix ctx; 
+        };
     };
-  };
-}
+  }
