@@ -20,6 +20,8 @@ let
     golint
     delve
     impl
+    mockgen
+    bazel-gazelle
 
     go_1_19
   ];
@@ -32,6 +34,7 @@ pkgs.mkShell {
     export PATH=$PATH:$HOME/.cargo/bin:$HOME/go/bin
     export HTTP_PROXY=http://127.0.0.1:1080
     export HTTPS_PROXY=$HTTP_PROXY
+    export GOROOT=$(go env GOROOT)
     bold=$'\e[1m'
     reset=$'\e[0m'
     echo "PROXY=$bold$HTTP_PROXY$reset; Happy Hacking!"

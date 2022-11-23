@@ -14,6 +14,9 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernel.sysctl = {
+    "vm.swapiness" = 0;
+  };
 
   services.xserver = {
     enable = true;
@@ -77,11 +80,14 @@
     geoclue2
 
     glib
+    gtk3
+    picom
   ];
 
   nixpkgs.config.allowUnfree = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
+  services.picom.enable = true;
   hardware.opengl.enable = true;
 
   fonts.fonts = with pkgs; [
@@ -129,10 +135,6 @@
   };
 
 
-  # Perhaps we can use a more lightweighted key ring manager here. 
-  programs.gnupg.agent = {
-    enable = true;
-  };
   services.gnome.gnome-keyring.enable = true;
 
   # Nearly always open bluetooth.

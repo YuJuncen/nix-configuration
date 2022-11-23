@@ -16,6 +16,7 @@
         openssl
         unzip
         virt-manager
+        jq
 
         flameshot
         clipmenu
@@ -42,12 +43,12 @@
         package = pkgs.yaru-theme;
         name = "Yaru";
       };
-
+      file = import ./nixos/softwares/i3/scripts.nix ctx;
     };
 
 
     xsession = {
-      windowManager.i3 = import ./softwares/i3.nix ctx;
+      windowManager.i3 = import ./softwares/i3 ctx;
       numlock = { enable = true; };
       enable = true;
     };
@@ -60,9 +61,12 @@
       enable = true;
       font = "serif 24";
       theme = "${pkgs.rofi-nord-theme}/nord.rasi";
+      plugins = with pkgs; [rofi-calc rofi-pulse-select rofi-power-menu];
       extraConfig = {
         show-icons = true;
         sort = true;
+        terminal = "${pkgs.kitty}/bin/kitty";
+        modes = "window,drun,run,ssh,calc,ciderctl:${./softwares/rofi/ciderctl.sh}";
       };
     };
 
@@ -100,7 +104,7 @@
 
     services = {
       polybar = import ./softwares/polybar ctx;
-      dunst = import ./softwares/dunst.nix ctx; 
-        };
+      dunst = import ./softwares/dunst.nix ctx;
     };
-  }
+  };
+}

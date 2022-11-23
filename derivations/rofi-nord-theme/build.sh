@@ -3,4 +3,5 @@
 PATH=$PATH:"$busybox/bin"
 
 mkdir -p $out
-cp $src $out/nord.rasi
+echo "$COLOR_SCHEMA"
+cat "$COLOR_SCHEMA" "$src" > "$out/nord.rasi"

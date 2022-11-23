@@ -3,6 +3,8 @@
 { pkgs, lib, colors, ... }:
 
 let
+  common = import ./common.nix;
+  workspaces = common.workspaces;
   fonts = {
     names = [ "Noto Serif CJK SC" "Noto Sans CJK SC" "monospace" ];
     style = "Bold";
@@ -75,13 +77,14 @@ let
     };
   };
   personalWorkspaceConfig = {
-    bindings = {
-      "${m}+z" = "workspace Terminals";
-      "${m}+Shift+z" = "move to workspace Terimals";
-      "${m}+c" = "workspace Browsers";
-      "${m}+Shift+c" = "move to workspace Browsers";
-      "${m}+x" = "workspace Extra";
-      "${m}+Shift+x" = "move to workspace Extra";
+    bindings = with workspaces; {
+      "${m}+z" = "workspace ${z}";
+      "${m}+Shift+z" = "move to workspace ${z}";
+      "${m}+c" = "workspace ${c}";
+      "${m}+Shift+c" = "move to workspace ${c}";
+      "${m}+x" = "workspace ${x}";
+      "${m}+Shift+x" = "move to workspace ${x}";
+      "${m}+Return" = "exec --no-startup-id $HOME/scripts/contextual-run"
     };
   };
   startup = [
@@ -91,7 +94,8 @@ let
     }
     {
       command = "${pkgs.goldendict}/bin/goldendict";
-      workspace = "Extra";
+      # This behavior is exactly what we need -- we don't want to bind golden dict into a workspace.
+      workspace = workspaces.x;
     }
   ];
   colorSchema = with colors; ''
@@ -103,7 +107,11 @@ let
   '';
   rofiInsteadOfDMenu = {
     "${m}+d" = "exec --no-startup-id rofi -show drun";
+    "${m}+Tab" = "exec --no-startup-id rofi -show window";
     "${m}+Shift+d" = "exec --no-startup-id rofi -show run";
+    "${m}+Shift+Return" = "exec --no-startup-id rofi -show ssh";
+    "${m}+p" = "exec --no-startup-id rofi -show ciderctl";
+    "${m}+Shift+p" = "exec --no-startup-id rofi -show calc";
   };
   mergeAll = builtins.foldl' (a: b: a // b) { };
 in
@@ -125,7 +133,7 @@ in
     modifier = m;
 
     floating = {
-      criteria = [{ title = "GoldenDict"; } { title = "cider"; }];
+      criteria = [{ title = "GoldenDict"; } { workspace = workspaces.x; }];
       border = 0;
     };
 

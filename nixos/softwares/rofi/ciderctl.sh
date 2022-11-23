@@ -1,4 +1,7 @@
 #! /usr/bin/env bash
+
+set -eu
+
 api=http://localhost:9000/api/playback
 options=(
     "Pause / Play\0icon\x1fmedia-playback-start"

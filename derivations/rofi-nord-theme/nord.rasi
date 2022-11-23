@@ -3,33 +3,31 @@
  * User                 : LR-Tech               
  * Theme Repo           : https://github.com/lr-tech/rofi-themes-collection
  * Nord Project Repo    : https://github.com/arcticicestudio/nord
- * With a little changes. -- Hillium
+ * With a little changes, we modified the color schema, can we even call this theme "nord"? -- Hillium
  *******************************************************************************/
 
+/*
+The build script will add a color schema into here, like:
 * {
-    nord0:     #2e3440;
-    nord1:     #3b4252;
-    nord2:     #434c5e;
-    nord3:     #4c566a;
+    alert: #...;
+    background: #...;
+    background-lighter: #...;
+    disabled: #...;
+    foreground: #...;
+    primary: #...;
+    primary-16: #...;
+    primary-32: #...;
+    primary-dim: #...;
+    primary-dimmer: #...;
+    secondary: #...;
+    white: #...;
+}
+*/
 
-    nord4:     #d8dee9;
-    nord5:     #e5e9f0;
-    nord6:     #eceff4;
-
-    nord7:     #8fbcbb;
-    nord8:     #88c0d0;
-    nord9:     #81a1c1;
-    nord10:    #5e81ac;
-    nord11:    #bf616a;
-
-    nord12:    #d08770;
-    nord13:    #ebcb8b;
-    nord14:    #a3be8c;
-    nord15:    #b48ead;
-
+* {
     background-color:   transparent;
-    text-color:         @nord4;
-    accent-color:       @nord8;
+    text-color:         @background;
+    accent-color:       @primary;
 
     margin:     0px;
     padding:    0px;
@@ -37,13 +35,13 @@
 }
 
 window {
-    background-color:   @nord0;
+    background-color:   @white;
     border-color:       @accent-color;
 
     location:   center;
     width:      33%;
     y-offset:   -160px;
-    border:     1px;
+    border:     0px;
 }
 
 inputbar {
@@ -57,7 +55,7 @@ prompt, entry, element-text, element-icon {
 }
 
 prompt {
-    text-color: @accent-color;
+    text-style: bold;
 }
 
 listview {
@@ -73,27 +71,41 @@ element {
 }
 
 element normal urgent {
-    text-color: @nord13;
+    border: 0 0 0 10px; 
+    border-color: @alert;
 }
 
 element normal active {
-    text-color: @accent-color;
+    border: 0 0 0 10px; 
+    border-color: @secondary;
 }
 
 element selected {
-    text-color: @nord0;
+    text-color: @white;
+    text-style: bold;
+    background-color: @primary;
 }
 
 element selected normal {
-    background-color:   @accent-color;
+    text-style: bold;
+    background-color: @primary;
+    text-color: @white;
 }
 
 element selected urgent {
-    background-color:   @nord13;
+    border: 0 0 0 10px; 
+    border-color: @alert;
+    text-color:   @white;
+    text-style: bold;
+    background-color: @alert;
 }
 
 element selected active {
-    background-color:   @nord8;
+    border: 0 0 0 10px; 
+    border-color: @secondary;
+    text-style: bold;
+    text-color:   @white;
+    background-color: @secondary;
 }
 
 element-icon {
