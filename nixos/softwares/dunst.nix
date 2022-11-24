@@ -1,7 +1,8 @@
 # Put into home manager -> home.services.dunst.
 { pkgs, colors, ... }:
-let mkFormat = appNameColor: 
-''<span foreground='${appNameColor}' weight='bold'>%a</span> %s\n<span size='10pt'>%b</span>'';
+let
+  mkFormat = appNameColor:
+    ''<span foreground='${appNameColor}' weight='bold'>%a</span> %s\n<span size='10pt'>%b</span>'';
 in
 {
   enable = true;

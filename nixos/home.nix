@@ -5,7 +5,7 @@
       stateVersion = "22.05";
       sessionVariables = {
         EDITOR = "vim";
-        PATH = "$PATH:$HOME/.cargo/bin";
+        PATH = "$PATH:$HOME/.cargo/bin:$HOME/script";
       };
       packages = with pkgs; [
         dconf
@@ -43,7 +43,9 @@
         package = pkgs.yaru-theme;
         name = "Yaru";
       };
-      file = import ./nixos/softwares/i3/scripts.nix ctx;
+      file = import ./softwares/i3/scripts.nix ctx //
+        import ./util-scripts.nix //
+        import ../shells/nixos-files.nix;
     };
 
 
@@ -59,9 +61,9 @@
 
     programs.rofi = {
       enable = true;
-      font = "serif 24";
+      font = "Noto Serif CJK SC 24";
       theme = "${pkgs.rofi-nord-theme}/nord.rasi";
-      plugins = with pkgs; [rofi-calc rofi-pulse-select rofi-power-menu];
+      plugins = with pkgs; [ rofi-calc rofi-pulse-select rofi-power-menu ];
       extraConfig = {
         show-icons = true;
         sort = true;
@@ -83,7 +85,7 @@
       };
       theme = {
         package = pkgs.mono-gtk-theme;
-        name = "MonoThemeDark";
+        name = "MonoTheme";
       };
       font = {
         package = pkgs.noto-fonts-cjk;

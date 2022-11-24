@@ -84,7 +84,7 @@ let
       "${m}+Shift+c" = "move to workspace ${c}";
       "${m}+x" = "workspace ${x}";
       "${m}+Shift+x" = "move to workspace ${x}";
-      "${m}+Return" = "exec --no-startup-id $HOME/scripts/contextual-run"
+      "${m}+Return" = "exec --no-startup-id $HOME/scripts/contextual-run";
     };
   };
   startup = [
@@ -133,7 +133,7 @@ in
     modifier = m;
 
     floating = {
-      criteria = [{ title = "GoldenDict"; } { workspace = workspaces.x; }];
+      criteria = [{ title = "GoldenDict"; } { workspace = workspaces.x; } { class = "org.gnome.Nautilus"; }];
       border = 0;
     };
 
