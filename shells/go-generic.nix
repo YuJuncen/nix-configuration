@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs ? import <nixpkgs-unstable> {}, ... }:
 with pkgs; pkgs.mkShell {
   package = [
     go-tools

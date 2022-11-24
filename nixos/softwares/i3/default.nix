@@ -97,6 +97,10 @@ let
       # This behavior is exactly what we need -- we don't want to bind golden dict into a workspace.
       workspace = workspaces.x;
     }
+    {
+      command = "${pkgs.thunderbird}/bin/thunderbird";
+      workspace = workspaces.x;
+    }
   ];
   colorSchema = with colors; ''
     #                       Background          Border              Text     Indictor           Child Boarder 
@@ -133,7 +137,12 @@ in
     modifier = m;
 
     floating = {
-      criteria = [{ title = "GoldenDict"; } { workspace = workspaces.x; } { class = "org.gnome.Nautilus"; }];
+      criteria = [
+        { class = "GoldenDict"; } 
+        { workspace = workspaces.x; } 
+        { class = "org.gnome.Nautilus"; }
+        { instance = "calibre-ebook-viewer"; }
+      ];
       border = 0;
     };
 
