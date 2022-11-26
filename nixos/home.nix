@@ -1,4 +1,10 @@
 { home-manager, pkgs, ... } @ ctx:
+let doom-emacs = pkgs.callPackage (builtins.fetchTarball {
+    url = https://github.com/nix-community/nix-doom-emacs/archive/master.tar.gz;
+    sha256 = "sha256:1ha3lwpxd72hqz8dll0vx1qva0h9q6yqi0h66szrv69sg2kdi0px";
+  }) {
+    doomPrivateDir = ./doom;  
+  }; in
 {
   home-manager.users.hillium = {
     home = {
@@ -36,6 +42,10 @@
         calibre
         goldendict
         thunderbird
+
+        tdesktop
+
+        doom-emacs
       ];
       pointerCursor = {
         gtk.enable = true;
@@ -69,6 +79,19 @@
         sort = true;
         terminal = "${pkgs.kitty}/bin/kitty";
         modes = "window,drun,run,ssh,calc,ciderctl:${./softwares/rofi/ciderctl.sh}";
+      };
+    };
+
+    programs.kitty = {
+      enable = true;
+      font = {
+        package = pkgs.ibm-plex;
+        name = "IBM Plex Mono";
+      };
+      settings = {
+        scrollback_lines = 10000;
+        enabled_layouts = "grid,tall,stack";
+        shell_integration = "enabled";
       };
     };
 

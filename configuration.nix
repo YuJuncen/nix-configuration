@@ -97,6 +97,7 @@
     noto-fonts-cjk-sans
     noto-fonts-emoji
     siji
+    ibm-plex
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
