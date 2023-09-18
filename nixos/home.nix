@@ -1,17 +1,11 @@
 { home-manager, pkgs, ... } @ ctx:
-let doom-emacs = pkgs.callPackage (builtins.fetchTarball {
-    url = https://github.com/nix-community/nix-doom-emacs/archive/master.tar.gz;
-    sha256 = "sha256:1ha3lwpxd72hqz8dll0vx1qva0h9q6yqi0h66szrv69sg2kdi0px";
-  }) {
-    doomPrivateDir = ./doom;  
-  }; in
 {
   home-manager.users.hillium = {
     home = {
       stateVersion = "22.05";
       sessionVariables = {
         EDITOR = "vim";
-        PATH = "$PATH:$HOME/.cargo/bin:$HOME/script";
+        PATH = "$PATH:$HOME/.cargo/bin:$HOME/scripts";
       };
       packages = with pkgs; [
         dconf
@@ -23,6 +17,7 @@ let doom-emacs = pkgs.callPackage (builtins.fetchTarball {
         unzip
         virt-manager
         jq
+        gh
 
         flameshot
         clipmenu
@@ -37,6 +32,7 @@ let doom-emacs = pkgs.callPackage (builtins.fetchTarball {
         gnome.seahorse
         gnome.gnome-bluetooth
         gnome.gnome-weather
+        gtk4
 
         cider
         calibre
@@ -45,7 +41,10 @@ let doom-emacs = pkgs.callPackage (builtins.fetchTarball {
 
         tdesktop
 
-        doom-emacs
+        emacs-nox
+
+        pavucontrol
+        paprefs
       ];
       pointerCursor = {
         gtk.enable = true;
@@ -82,6 +81,11 @@ let doom-emacs = pkgs.callPackage (builtins.fetchTarball {
       };
     };
 
+    i18n.inputMethod = {
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [ fcitx5-gtk fcitx5-chinese-addons libsForQt5.fcitx5-qt  ];
+    };
+
     programs.kitty = {
       enable = true;
       font = {
@@ -93,11 +97,6 @@ let doom-emacs = pkgs.callPackage (builtins.fetchTarball {
         enabled_layouts = "grid,tall,stack";
         shell_integration = "enabled";
       };
-    };
-
-    i18n.inputMethod = {
-      enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [ fcitx5-gtk fcitx5-chinese-addons ];
     };
 
     gtk = {

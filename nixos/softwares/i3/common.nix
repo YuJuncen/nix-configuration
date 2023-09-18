@@ -1,7 +1,7 @@
 {
   workspaces = {
-    z = "Z: Terminals";
-    c = "C: Browsers";
-    x = "X: Extras";
+    z = "11:Z:Terminals";
+    c = "13:C:Browsers";
+    x = "12:X:Extras";
   };
 }

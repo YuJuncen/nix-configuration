@@ -12,7 +12,10 @@ get_workspace() {
 select=$(cat <<EOF
 { 
     "${workspaces.z}": "kitty",
-    "${workspaces.c}": "firefox"
+    "${workspaces.c}": "firefox",
+    "1": "code",
+    "2": "google-chrome",
+    "10": "virt-manager"
 }
 EOF
 )
