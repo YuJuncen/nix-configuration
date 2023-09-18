@@ -15,5 +15,11 @@ nixos-generate-config --show-hardware-config > hardwares/hardware-config.nix
 Build the system via the config:
 
 ```shell
-nixos-rebuild switch --flake ".#"
+nixos-rebuild switch --flake ".#structure"
+```
+
+Format the codebase (is there any CI?)
+
+```shell
+nix fmt
 ```

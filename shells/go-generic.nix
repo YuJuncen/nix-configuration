@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs-unstable> {}, ... }:
+{ pkgs ? import <nixpkgs-unstable> { }, ... }:
 with pkgs; pkgs.mkShell {
   package = [
     go-tools
@@ -21,5 +21,5 @@ with pkgs; pkgs.mkShell {
     export HTTP_PROXY=http://127.0.0.1:1080
     export HTTPS_PROXY=$HTTP_PROXY
     export GOROOT=$(go env GOROOT)
-'';
+  '';
 }

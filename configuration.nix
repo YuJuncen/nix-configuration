@@ -2,12 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, home-manager, unstable, ... } @ ctx:
+{ config, pkgs, lib, home-manager, unstable, hyprland-flake, ... } @ ctx:
 {
   imports =
     [
       home-manager.nixosModule
       ./nixos/foundation.nix
+      ./nixos/hyprland.nix
       ./nixos/home.nix
     ];
 
@@ -119,7 +120,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 
   i18n.inputMethod = {
     enabled = "fcitx5";
@@ -152,5 +153,16 @@
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+  programs.hyprland = {
+    enable = true;
+    package = hyprland-flake.packages.${pkgs.system}.hyprland;
+  };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
   services.gvfs.enable = true;
+  services.dbus.enable = true;
+  security.rtkit.enable = true;
 }

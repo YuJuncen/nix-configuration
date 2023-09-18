@@ -138,8 +138,8 @@ in
 
     floating = {
       criteria = [
-        { class = "GoldenDict"; } 
-        { workspace = workspaces.x; } 
+        { class = "GoldenDict"; }
+        { workspace = workspaces.x; }
         { class = "org.gnome.Nautilus"; }
         { instance = "calibre-ebook-viewer"; }
       ];
