@@ -1,6 +1,6 @@
 # Place: home-manager
 
-{ pkgs, lib, colors, ... }:
+{ pkgs, lib, colors, unstable, ... }:
 
 let
   common = import ./common.nix;
@@ -93,7 +93,7 @@ let
       notification = false;
     }
     {
-      command = "${pkgs.goldendict}/bin/goldendict";
+      command = "${unstable.goldendict-ng}/bin/goldendict";
       # This behavior is exactly what we need -- we don't want to bind golden dict into a workspace.
       workspace = workspaces.x;
     }

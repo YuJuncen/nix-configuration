@@ -1,8 +1,9 @@
-{ home-manager, pkgs, ... } @ ctx:
+{ home-manager, pkgs, unstable, ... } @ ctx:
 {
+  home-manager.extraSpecialArgs = { inherit unstable; };
   home-manager.users.hillium = {
     home = {
-      stateVersion = "22.05";
+      stateVersion = "22.11";
       sessionVariables = {
         EDITOR = "vim";
         PATH = "$PATH:$HOME/.cargo/bin:$HOME/scripts";
@@ -12,7 +13,6 @@
         feh
 
         firefox
-        vscode
         openssl
         unzip
         virt-manager
@@ -36,7 +36,6 @@
 
         cider
         calibre
-        goldendict
         thunderbird
 
         tdesktop
@@ -45,7 +44,10 @@
 
         pavucontrol
         paprefs
-      ];
+      ] ++ (with unstable; [
+        vscode
+        goldendict-ng
+      ]);
       pointerCursor = {
         gtk.enable = true;
         x11.enable = true;
