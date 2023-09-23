@@ -8,7 +8,6 @@
     [
       home-manager.nixosModule
       ./nixos/foundation.nix
-      ./nixos/hyprland.nix
       ./nixos/home.nix
     ];
 

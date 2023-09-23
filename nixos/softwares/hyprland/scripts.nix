@@ -5,7 +5,7 @@
     target = "scripts/hypr-contextual-run";
     text = ''#! /usr/bin/env bash
 get_workspace() {
-    ${unstable.hyprland}/bin/hyprctl activeworkspace | ${pkgs.jq}/bin/jq -r '.name'
+    ${unstable.hyprland}/bin/hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq -r '.name'
 }
 select=$(cat <<EOF
 { 

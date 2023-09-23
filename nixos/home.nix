@@ -20,7 +20,7 @@
           jq
           gh
 
-          flameshot
+          flameshot-hyprland
           clipmenu
           xclip
 

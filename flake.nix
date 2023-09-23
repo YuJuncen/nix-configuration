@@ -48,8 +48,8 @@
                   add-custom-derivations = _self: super: with super; {
                     rofi-nord-theme = import ./derivations/rofi-nord-theme super;
                     mono-gtk-theme = import ./derivations/mono-gtk-theme { pkgs = super; };
+                    flameshot-hyprland = import ./derivations/flameshot.nix super;
                   };
-
 
                 in
                 [ add-custom-derivations ];
