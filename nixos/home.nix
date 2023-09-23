@@ -2,13 +2,7 @@
 {
   home-manager.extraSpecialArgs = { inherit unstable; };
   home-manager.users.hillium =
-    let
-
-    in
     {
-      imports = [
-        hyprland-flake.homeManagerModules.default
-      ];
       home = {
         stateVersion = "23.05";
         sessionVariables = {
@@ -51,6 +45,12 @@
 
           pavucontrol
           paprefs
+
+          file
+          jless
+          clash-verge
+          wofi
+          lazygit
         ] ++ (with unstable; [
           vscode
           goldendict-ng
@@ -63,7 +63,17 @@
         };
         file = import ./softwares/i3/scripts.nix ctx //
           import ./util-scripts.nix //
-          import ../shells/nixos-files.nix;
+          import ./softwares/hyprland/scripts.nix ctx //
+          import ../shells/nixos-files.nix // {
+            electron-wayland = {
+              target = ".config/electron25-flags.conf";
+              text = ''
+--enable-features=WaylandWindowDecorations
+--ozone-platform-hint=auto
+--enable-wayland-ime
+              '';
+            };
+          };
       };
 
 
@@ -73,26 +83,43 @@
         enable = true;
       };
 
-      xresources.extraConfig = ''
-        Xft.dpi: 192
-      '';
+      programs.waybar =
+        {
+          enable = true;
+          systemd.enable = true;
+          package = (pkgs.waybar.override {
+            swaySupport = false;
+          }).overrideAttrs (oldAttrs: rec {
+            version = "e30fba0b8f875c7f35e3173be2b9f6f3ffe3641e";
+            src = pkgs.fetchFromGitHub {
+              owner = "Alexays";
+              repo = "Waybar";
+              rev = version;
+              sha256 = "sha256-9LJDA+zrHF9Mn8+W9iUw50LvO+xdT7/l80KdltPrnDo=";
+            };
+            buildInputs = oldAttrs.buildInputs ++ [ pkgs.wayland-protocols pkgs.libappindicator-gtk3 pkgs.libinput pkgs.jack2 ];
+            mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" "-Dcava=disabled" ];
+          });
+        };
 
       programs.rofi = {
         enable = true;
         font = "Noto Serif CJK SC 24";
         theme = "${pkgs.rofi-nord-theme}/nord.rasi";
         plugins = with pkgs; [ rofi-calc rofi-pulse-select rofi-power-menu ];
+        package = pkgs.rofi-wayland;
         extraConfig = {
           show-icons = true;
           sort = true;
           terminal = "${pkgs.kitty}/bin/kitty";
-          modes = "window,drun,run,ssh,calc,ciderctl:${./softwares/rofi/ciderctl.sh}";
+          modes = "drun,run,ssh,calc,ciderctl:${./softwares/rofi/ciderctl.sh}";
         };
       };
 
       i18n.inputMethod = {
         enabled = "fcitx5";
-        fcitx5.addons = with pkgs; [ fcitx5-gtk fcitx5-chinese-addons libsForQt5.fcitx5-qt ];
+        fcitx5.addons = with pkgs; 
+          [ fcitx5-gtk fcitx5-chinese-addons libsForQt5.fcitx5-qt ];
       };
 
       programs.kitty = {
@@ -132,14 +159,6 @@
         style = {
           package = pkgs.adwaita-qt;
           name = "adwaita-dark";
-        };
-      };
-
-      wayland = {
-        windowManager = {
-          hyprland = {
-            enable = true;
-          };
         };
       };
 
