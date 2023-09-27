@@ -2,12 +2,12 @@
   description = "Hillium's personal NixOS configuration.";
 
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     "home-manager" = {
-      url = github:nix-community/home-manager/release-23.05;
+      url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-unstable.url = github:NixOS/nixpkgs/nixos-unstable;
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
   };
 
@@ -45,12 +45,11 @@
             overlayConfig = { nixpkgs, ... }: rec {
               nixpkgs.overlays =
                 let
-                  add-custom-derivations = _self: super: with super; {
+                  add-custom-derivations = self: super: {
                     rofi-nord-theme = import ./derivations/rofi-nord-theme super;
                     mono-gtk-theme = import ./derivations/mono-gtk-theme { pkgs = super; };
-                    flameshot-hyprland = import ./derivations/flameshot.nix super;
+                    flameshot-hyprland = import ./derivations/flameshot super;
                   };
-
                 in
                 [ add-custom-derivations ];
             };

@@ -51,6 +51,7 @@
           clash-verge
           wofi
           lazygit
+          nil
         ] ++ (with unstable; [
           vscode
           goldendict-ng

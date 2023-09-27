@@ -1,7 +1,7 @@
 { mkDerivation
 , lib
 , fetchFromGitHub
-, qtbase
+, qt6
 , cmake
 , qttools
 , qtsvg
@@ -32,10 +32,10 @@ mkDerivation rec {
   passthru = {
     updateScript = nix-update-script { };
   };
-  cmakeFlags = ["-DUSE_WAYLAND_GRIM=1"]
+  cmakeFlags = ["-DUSE_WAYLAND_GRIM=1"];
 
   nativeBuildInputs = [ cmake qttools qtsvg ];
-  buildInputs = [ qtbase ];
+  buildInputs = [ qt6.qtbase ];
 
   meta = with lib; {
     description = "Powerful yet simple to use screenshot software";
