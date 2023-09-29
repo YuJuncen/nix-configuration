@@ -1,15 +1,16 @@
-{ mkDerivation
-, lib
+{ stdenv
 , fetchFromGitHub
-, qt6
-, cmake
+, qtbase
 , qttools
 , qtsvg
+, wrapQtAppsHook
+, cmake
 , nix-update-script
 , fetchpatch
+, kguiaddons
 }:
 
-mkDerivation rec {
+stdenv.mkDerivation rec {
   pname = "flameshot-hyprland";
   version = "12.1.0";
 
@@ -32,17 +33,8 @@ mkDerivation rec {
   passthru = {
     updateScript = nix-update-script { };
   };
-  cmakeFlags = ["-DUSE_WAYLAND_GRIM=1"];
+  cmakeFlags = [ "-DUSE_WAYLAND_GRIM=1" "-DUSE_WAYLAND_CLIPBOARD=1" ];
 
-  nativeBuildInputs = [ cmake qttools qtsvg ];
-  buildInputs = [ qt6.qtbase ];
-
-  meta = with lib; {
-    description = "Powerful yet simple to use screenshot software";
-    homepage = "https://github.com/flameshot-org/flameshot";
-    mainProgram = "flameshot";
-    maintainers = with maintainers; [ scode oxalica ];
-    license = licenses.gpl3Plus;
-    platforms = platforms.linux ++ platforms.darwin;
-  };
+  nativeBuildInputs = [ cmake kguiaddons qttools qtsvg wrapQtAppsHook ];
+  buildInputs = [ qtbase ];
 }

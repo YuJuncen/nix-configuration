@@ -2,13 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, home-manager, unstable, hyprland-flake, ... } @ ctx:
+{ config, pkgs, unstable, ... }:
 {
   imports =
     [
-      home-manager.nixosModule
       ./nixos/foundation.nix
-      ./nixos/home.nix
     ];
 
   # Enable OpenGL
@@ -62,21 +60,11 @@
         wayland = true;
       };
     };
-    windowManager.i3 = { enable = true; extraPackages = [ pkgs.rofi ]; };
   };
   environment.pathsToLink = [ "/libexec" ];
-
-
   time.timeZone = "Asia/Shanghai";
 
 
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = {
-  #   "eurosign:e";
-  #   "caps:escape" # map caps to escape.
-  # };
-  services.xserver.dpi = 192;
   environment.variables = {
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
   };
@@ -134,7 +122,7 @@
     xdg-utils # for opening default programs when clicking links
     wl-clipboard
     glib # gsettings
-  
+
     polkit-kde-agent
   ];
 
@@ -226,7 +214,7 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-wlr ];
   };
   services.pipewire = {
     enable = true;
