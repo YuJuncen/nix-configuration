@@ -203,7 +203,6 @@
     nvidiaPatches = true;
     xwayland = {
       enable = true;
-      hidpi = true;
     };
     package = unstable.hyprland.override {
       enableXWayland = config.programs.hyprland.xwayland.enable;
@@ -227,4 +226,10 @@
   services.gvfs.enable = true;
   services.dbus.enable = true;
   security.rtkit.enable = true;
+
+  # Well, not a good idea.
+  systemd.services.nix-daemon.environment = {
+    "HTTP_PROXY" = "http://127.0.0.1:7890";
+    "HTTPS_PROXY" = "http://127.0.0.1:7890";
+  };
 }

@@ -12,19 +12,6 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
-    let
-      home = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {
-                      colors = import ./nixos/color.nix;
-
-        };
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [
-          attrs.hyprland.homeManagerModules.default
-          ./nixos/home.nix
-        ];
-      };
-    in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
@@ -75,7 +62,17 @@
               ./configuration.nix
               ./uncommon/hardware-config.nix
               home-manager.nixosModules.home-manager
-              { home-manager.users."hillium" = home.config specialArgs; }
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.users."hillium".imports = [ 
+                  attrs.hyprland.homeManagerModules.default
+                  ./nixos/home.nix 
+                ];
+                home-manager.extraSpecialArgs = {
+                  colors = import ./nixos/color.nix;
+                  unstable = specialArgs.unstable;
+                };
+              }
             ];
         };
     };

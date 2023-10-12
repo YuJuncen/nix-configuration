@@ -1,5 +1,4 @@
-_cx: ''
-    # See https://wiki.hyprland.org/Configuring/Monitors/
+_cx: ''# See https://wiki.hyprland.org/Configuring/Monitors/
   monitor=,preferred,auto,2
 
 
@@ -12,7 +11,6 @@ _cx: ''
   # source = ~/.config/hypr/myColors.conf
 
   # Some default env vars.
-  env = XCURSOR_SIZE,24
   env = WLR_NO_HARDWARE_CURSORS,1
   env = QT_QPA_PLATFORM,wayland
   # For VSCode.
@@ -20,7 +18,6 @@ _cx: ''
 
   env = QT_AUTO_SCREEN_SCALE_FACTOR,1
   env = QT_ENABLE_HIGHDPI_SCALING,1
-  env = GDK_SCALE,2
   env = GDK_BACKEND,wayland
 
   env = INPUT_METHOD,fcitx
@@ -53,10 +50,16 @@ _cx: ''
       border_size = 2
       col.active_border = rgb(429d71)
       col.inactive_border = rgb(575c58)
-      col.group_border = rgb(575c58)
-      col.group_border_active = rgb(86c166)
 
       layout = dwindle
+  }
+
+  group {
+    col.border_inactive = rgb(575c58)
+    col.border_active = rgb(86c166)
+    groupbar {
+        render_titles = false
+    }
   }
 
   decoration {
@@ -101,15 +104,12 @@ _cx: ''
       workspace_swipe = off
   }
 
-  misc {
-      render_titles_in_groupbar = false;
-      groupbar_titles_font_size = 16
-  }
-
   exec-once = hyprpaper
   exec-once = fcitx5 -d
   exec-once = systemctl --user restart waybar
   exec-once = clash-verge
+  exec-once = wl-paste --type text --watch cliphist store #Stores only text data
+  exec-once = wl-paste --type image --watch cliphist store #Stores only image data
 
   # Example windowrule v1
   # windowrule = float, ^(kitty)$
@@ -130,6 +130,8 @@ _cx: ''
 
   bindn = CTRL,F11,pass,^GoldenDict-ng$
   bindn = $mainMod CTRL,C,exec,wl-paste | xargs goldendict
+  bind = SUPER SHIFT,S,exec,QT_SCREEN_SCALE_FACTORS="0.5" flameshot gui
+  bind = ALT, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
 
 
   # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
@@ -187,5 +189,4 @@ _cx: ''
   # Move/resize windows with mainMod + LMB/RMB and dragging
   bindm = $mainMod, mouse:272, movewindow
   bindm = $mainMod, mouse:273, resizewindow
-
 ''

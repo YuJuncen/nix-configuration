@@ -10,15 +10,15 @@
 , kguiaddons
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "flameshot-hyprland";
-  version = "12.1.0";
+  version = "nightly";
 
   src = fetchFromGitHub {
     owner = "flameshot-org";
     repo = "flameshot";
-    rev = "v${version}";
-    sha256 = "sha256-omyMN8d+g1uYsEw41KmpJCwOmVWLokEfbW19vIvG79w=";
+    rev = "0bbb9528615c1d3697e0538c4a53d8d0e00ade0a";
+    sha256 = "sha256-5rckIuxtB4niCpxslZ6pQkTNwLeH3wcBImWmUa1KtZg=";
   };
 
   patches = [
