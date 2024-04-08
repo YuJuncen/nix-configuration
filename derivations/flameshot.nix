@@ -17,7 +17,7 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "flameshot-org";
     repo = "flameshot";
-    rev = "0bbb9528615c1d3697e0538c4a53d8d0e00ade0a";
+    rev = "master";
     sha256 = "sha256-5rckIuxtB4niCpxslZ6pQkTNwLeH3wcBImWmUa1KtZg=";
   };
 

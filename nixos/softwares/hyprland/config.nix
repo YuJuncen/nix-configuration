@@ -108,8 +108,7 @@ _cx: ''# See https://wiki.hyprland.org/Configuring/Monitors/
   exec-once = fcitx5 -d
   exec-once = systemctl --user restart waybar
   exec-once = clash-verge
-  exec-once = wl-paste --type text --watch cliphist store #Stores only text data
-  exec-once = wl-paste --type image --watch cliphist store #Stores only image data
+  exec-once = wl-paste --watch cliphist store 
 
   # Example windowrule v1
   # windowrule = float, ^(kitty)$

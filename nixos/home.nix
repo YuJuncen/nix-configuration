@@ -152,7 +152,7 @@
       };
       font = {
         package = pkgs.noto-fonts-cjk;
-        name = "Noto Sans CJK SC";
+        name = "IBM Plex Sans JP";
       };
     };
 
@@ -169,6 +169,13 @@
 
     services = {
       polybar = import ./softwares/polybar ctx;
+      dunst = import ./softwares/dunst.nix ctx;
+      mpd = {
+        enable = true;
+        musicDirectory = "~/Music";
+      };
+      mpd-mpris.enable = true; 
+      playerctld.enable = true;
       gammastep = {
         # it seems it cannot modify the gamma now.
         enable = false;
