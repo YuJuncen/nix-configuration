@@ -1,14 +1,6 @@
 # https://numtide.github.io/devshell
 imports = ["language.go"]
 
-[[env]]
-name = "HTTP_PROXY"
-value = "http://127.0.0.1:7890"
-
-[[env]]
-name = "HTTPS_PROXY"
-value = "http://127.0.0.1:7890"
-
 [language.go]
 package = "go_1_21"
 
@@ -33,6 +25,7 @@ packages = [
     "clang",
     "rustup",
     "gdb",
+    "typos",
 
     "fish"
 ]

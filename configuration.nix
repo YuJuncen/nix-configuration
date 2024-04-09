@@ -55,11 +55,12 @@
   services.xserver = {
     enable = true;
     displayManager = {
-      gdm = {
+      lightdm = {
         enable = true;
-        wayland = true;
       };
     };
+    windowManager.i3.enable = true;
+    dpi = 192;
   };
   environment.pathsToLink = [ "/libexec" ];
   time.timeZone = "Asia/Shanghai";
@@ -84,12 +85,10 @@
     };
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.hillium = {
     isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = [ "wheel" "networkmanager" "audio" "docker" "libvirtd" ];
-    hashedPassword = "$6$FFGkdebWQ9l83MQ3$IsQqoZ9AC7qJSActPp0MnAHLx1cCcQoCbem/VIQmDpwjA83yv5gCzCRMW7LALEN4Z5jPMZtXXlJyCcE1RGWiX.";
   };
   programs.fish.enable = true;
 
@@ -119,9 +118,9 @@
     playerctl
 
     # Some for wayland
-    wayland
-    xdg-utils # for opening default programs when clicking links
-    wl-clipboard
+    # wayland
+    # xdg-utils # for opening default programs when clicking links
+    # wl-clipboard
     glib # gsettings
 
     polkit-kde-agent
@@ -132,25 +131,45 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   services.picom.enable = true;
 
-  fonts.fonts = with pkgs; [
-    noto-fonts-cjk
-    noto-fonts-cjk-serif
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    siji
-    ibm-plex
-    (nerdfonts.override {
-      fonts = [ "Hasklig" "DroidSansMono" "IBMPlexMono" ];
-    })
-    intel-one-mono
-  ];
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts-cjk
+      noto-fonts-cjk-serif
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
+      siji
+      ibm-plex
+      (nerdfonts.override {
+        fonts = [ "Hasklig" "DroidSansMono" "IBMPlexMono" ];
+      })
+      intel-one-mono
+    ];
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "Noto Serif CJK SC" ];
+        sansSerif = [ "Noto Sans CJK SC" ];
+        monospace = [ "IBM Plex Mono" ];
+      };
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
 
   # Enable networking manager.
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    firewall = {
+      enable = true;
+      allowPing = true;
+      extraCommands = "iptables -A INPUT -i 'utun+' -j ACCEPT";
+      allowedTCPPorts = [
+        53317 /* Local Send */
+      ];
+      checkReversePath = "loose";
+    };
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -164,10 +183,6 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-  };
 
   virtualisation.docker = {
     enable = true;
@@ -200,22 +215,10 @@
   programs.xwayland = {
     enable = true;
   };
-  programs.hyprland = {
-    enable = true;
-    xwayland = {
-      enable = true;
-    };
-    package = unstable.hyprland.override {
-      enableXWayland = config.programs.hyprland.xwayland.enable;
-    };
 
-  };
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
-  };
   services.pipewire = {
     enable = true;
+    audio.enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
@@ -225,10 +228,8 @@
   services.gvfs.enable = true;
   services.dbus.enable = true;
   security.rtkit.enable = true;
-
-  # Well, not a good idea.
-  systemd.services.nix-daemon.environment = {
-    "HTTP_PROXY" = "http://127.0.0.1:7890";
-    "HTTPS_PROXY" = "http://127.0.0.1:7890";
+  services.sing-box = {
+    enable = true;
+    package = unstable.sing-box;
   };
 }

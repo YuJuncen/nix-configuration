@@ -14,7 +14,7 @@ with pkgs; pkgs.mkShell {
     mockgen
     bazel-gazelle
 
-    go_1_19
+    go_1_21
   ];
   shellHook = ''
     export PATH=$PATH:$HOME/.cargo/bin:$HOME/go/bin

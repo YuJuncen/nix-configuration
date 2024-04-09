@@ -1,6 +1,8 @@
 { pkgs, unstable, ... } @ ctx:
 {
-  imports = [ ];
+  imports = [
+    ./softwares/i3
+  ];
   options = { };
   config = {
     home = {
@@ -22,7 +24,6 @@
         jq
         gh
 
-        flameshot-hyprland
         grim
         xclip
         cliphist
@@ -52,13 +53,15 @@
 
         file
         jless
-        clash-verge
         wofi
         lazygit
         nil
+
+        localsend
       ] ++ (with unstable; [
         vscode
         goldendict-ng
+        yesplaymusic
         netease-cloud-music-gtk
       ]);
       pointerCursor = {
@@ -69,7 +72,6 @@
       };
       file = import ./softwares/i3/scripts.nix ctx //
         import ./util-scripts.nix //
-        import ./softwares/hyprland/scripts.nix ctx //
         import ../shells/nixos-files.nix // {
         electron-wayland = {
           target = ".config/electron25-flags.conf";
@@ -83,48 +85,48 @@
     };
 
 
-    programs.waybar =
-      {
-        enable = true;
-        systemd.enable = true;
-        package = (pkgs.waybar.override {
-          swaySupport = false;
-        }).overrideAttrs (oldAttrs: rec {
-          version = "e30fba0b8f875c7f35e3173be2b9f6f3ffe3641e";
-          src = pkgs.fetchFromGitHub {
-            owner = "Alexays";
-            repo = "Waybar";
-            rev = version;
-            sha256 = "sha256-9LJDA+zrHF9Mn8+W9iUw50LvO+xdT7/l80KdltPrnDo=";
-          };
-          buildInputs = oldAttrs.buildInputs ++ [ pkgs.wayland-protocols pkgs.libappindicator-gtk3 pkgs.libinput pkgs.jack2 ];
-          mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" "-Dcava=disabled" ];
-        });
-      };
-
-    # programs.rofi = {
-    #   enable = true;
-    #   font = "Noto Serif CJK SC 24";
-    #   theme = "${pkgs.rofi-nord-theme}/nord.rasi";
-    #   plugins = with pkgs; [ rofi-calc rofi-pulse-select rofi-power-menu ];
-    #   package = pkgs.rofi-wayland;
-    #   extraConfig = {
-    #     show-icons = true;
-    #     sort = true;
-    #     terminal = "${pkgs.kitty}/bin/kitty";
-    #     modes = "drun,run,ssh,calc,ciderctl:${./softwares/rofi/ciderctl.sh}";
+    # programs.waybar =
+    #   {
+    #     enable = true;
+    #     systemd.enable = true;
+    #     package = (pkgs.waybar.override {
+    #       swaySupport = false;
+    #     }).overrideAttrs (oldAttrs: rec {
+    #       version = "e30fba0b8f875c7f35e3173be2b9f6f3ffe3641e";
+    #       src = pkgs.fetchFromGitHub {
+    #         owner = "Alexays";
+    #         repo = "Waybar";
+    #         rev = version;
+    #         sha256 = "sha256-9LJDA+zrHF9Mn8+W9iUw50LvO+xdT7/l80KdltPrnDo=";
+    #       };
+    #       buildInputs = oldAttrs.buildInputs ++ [ pkgs.wayland-protocols pkgs.libappindicator-gtk3 pkgs.libinput pkgs.jack2 ];
+    #       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" "-Dcava=disabled" ];
+    #     });
     #   };
-    # };
 
-    wayland.windowManager.hyprland = {
+    programs.rofi = {
       enable = true;
-      extraConfig = import ./softwares/hyprland/config.nix ctx;
+      font = "Noto Serif CJK SC 24";
+      theme = "${pkgs.rofi-nord-theme}/nord.rasi";
+      plugins = with pkgs; [ rofi-calc rofi-pulse-select rofi-power-menu ];
+      package = pkgs.rofi-wayland;
+      extraConfig = {
+        show-icons = true;
+        sort = true;
+        terminal = "${pkgs.kitty}/bin/kitty";
+        modes = "drun,run,ssh,calc,ciderctl:${./softwares/rofi/ciderctl.sh}";
+      };
     };
+
+    # wayland.windowManager.hyprland = {
+    #   enable = true;
+    #   extraConfig = import ./softwares/hyprland/config.nix ctx;
+    # };
 
     i18n.inputMethod = {
       enabled = "fcitx5";
       fcitx5.addons = with pkgs;
-        [ fcitx5-gtk fcitx5-chinese-addons libsForQt5.fcitx5-qt ];
+        [ fcitx5-nord fcitx5-rime fcitx5-gtk fcitx5-chinese-addons libsForQt5.fcitx5-qt ];
     };
 
     programs.kitty = {
@@ -150,13 +152,7 @@
         package = pkgs.mono-gtk-theme;
         name = "MonoTheme";
       };
-      font = {
-        package = pkgs.noto-fonts-cjk;
-        name = "IBM Plex Sans JP";
-      };
     };
-
-    fonts.fontconfig.enable = true;
 
     qt = {
       enable = true;
@@ -167,6 +163,10 @@
       };
     };
 
+    xresources.extraConfig = ''
+      Xft.dpi: 192
+    '';
+
     services = {
       polybar = import ./softwares/polybar ctx;
       dunst = import ./softwares/dunst.nix ctx;
@@ -174,7 +174,7 @@
         enable = true;
         musicDirectory = "~/Music";
       };
-      mpd-mpris.enable = true; 
+      mpd-mpris.enable = true;
       playerctld.enable = true;
       gammastep = {
         # it seems it cannot modify the gamma now.

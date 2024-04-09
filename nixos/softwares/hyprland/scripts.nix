@@ -1,6 +1,6 @@
 { pkgs, unstable, ... }:
 {
-  "contextual-run" = {
+  "hypr-contextual-run" = {
     executable = true;
     target = "scripts/hypr-contextual-run";
     text = ''#! /usr/bin/env bash

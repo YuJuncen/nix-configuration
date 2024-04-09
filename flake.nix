@@ -37,21 +37,7 @@
                     add-custom-derivations = self: super: {
                       rofi-nord-theme = import ./derivations/rofi-nord-theme super;
                       mono-gtk-theme = import ./derivations/mono-gtk-theme { pkgs = super; };
-                      flameshot-hyprland = import ./derivations/flameshot.nix ((with self; {
-                        inherit stdenv
-                          fetchFromGitHub
-                          cmake
-                          nix-update-script
-                          fetchpatch;
-                      }) // (with self.qt5; {
-                        inherit qtbase
-                          qtsvg
-                          qttools
-                          wrapQtAppsHook
-                          ;
-                      }) // (
-                        { kguiaddons = self.libsForQt5.kguiaddons; }
-                      ));
+                      yesplaymusic = import ./derivations/yesplaymusic super;
                     };
                   in
                   [ add-custom-derivations ];
@@ -64,9 +50,9 @@
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
-                home-manager.users."hillium".imports = [ 
+                home-manager.users."hillium".imports = [
                   attrs.hyprland.homeManagerModules.default
-                  ./nixos/home.nix 
+                  ./nixos/home.nix
                 ];
                 home-manager.extraSpecialArgs = {
                   colors = import ./nixos/color.nix;
