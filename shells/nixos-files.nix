@@ -1,6 +1,12 @@
+{ tikv-dev, ... } @ ctx:
 {
-  "go.nix" = {
-    target = "shells/go.nix";
-    source = ./go-generic.nix;
+  "tikv-dev" = {
+    target = "shells/tikv-dev";
+    # FIXME: not hard-code here.
+    source = tikv-dev;
+  };
+  "tidb-dev" = {
+    target = "shells/tidb-dev";
+    source = ./tidb-flake;
   };
 }

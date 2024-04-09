@@ -8,7 +8,7 @@
     home = {
       username = "hillium";
       homeDirectory = "/home/hillium";
-      stateVersion = "23.05";
+      stateVersion = "23.11";
       sessionVariables = {
         EDITOR = "vim";
         PATH = "$PATH:$HOME/.cargo/bin:$HOME/scripts";
@@ -38,6 +38,7 @@
         gnome.seahorse
         gnome.gnome-bluetooth
         gnome.gnome-weather
+        gnome.gpaste
         gtk4
 
         cider
@@ -56,12 +57,18 @@
         wofi
         lazygit
         nil
+        flameshot
+        openssl
 
+        ripgrep
         localsend
+        gnupg
+
+        rofi-gpaste
       ] ++ (with unstable; [
         vscode
-        goldendict-ng
         yesplaymusic
+        goldendict-ng
         netease-cloud-music-gtk
       ]);
       pointerCursor = {
@@ -72,7 +79,7 @@
       };
       file = import ./softwares/i3/scripts.nix ctx //
         import ./util-scripts.nix //
-        import ../shells/nixos-files.nix // {
+        import ../shells/nixos-files.nix ctx // {
         electron-wayland = {
           target = ".config/electron25-flags.conf";
           text = ''
@@ -83,26 +90,6 @@
         };
       };
     };
-
-
-    # programs.waybar =
-    #   {
-    #     enable = true;
-    #     systemd.enable = true;
-    #     package = (pkgs.waybar.override {
-    #       swaySupport = false;
-    #     }).overrideAttrs (oldAttrs: rec {
-    #       version = "e30fba0b8f875c7f35e3173be2b9f6f3ffe3641e";
-    #       src = pkgs.fetchFromGitHub {
-    #         owner = "Alexays";
-    #         repo = "Waybar";
-    #         rev = version;
-    #         sha256 = "sha256-9LJDA+zrHF9Mn8+W9iUw50LvO+xdT7/l80KdltPrnDo=";
-    #       };
-    #       buildInputs = oldAttrs.buildInputs ++ [ pkgs.wayland-protocols pkgs.libappindicator-gtk3 pkgs.libinput pkgs.jack2 ];
-    #       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" "-Dcava=disabled" ];
-    #     });
-    #   };
 
     programs.rofi = {
       enable = true;
@@ -152,20 +139,35 @@
         package = pkgs.mono-gtk-theme;
         name = "MonoTheme";
       };
+      font = {
+        name = "Noto Sans CJK SC";
+        package = pkgs.noto-fonts;
+      };
     };
-
+    fonts = {
+      fontconfig = {
+        enable = true;
+      };
+    };
     qt = {
       enable = true;
       platformTheme = "gnome";
       style = {
         package = pkgs.adwaita-qt;
-        name = "adwaita-dark";
+        name = "adwaita";
       };
     };
 
     xresources.extraConfig = ''
       Xft.dpi: 192
     '';
+
+    xsession = {
+      enable = true;
+      initExtra = ''
+        export QT_IM_MODULE=fcitx
+      '';
+    };
 
     services = {
       polybar = import ./softwares/polybar ctx;

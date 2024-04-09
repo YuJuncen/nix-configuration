@@ -7,6 +7,7 @@
   imports =
     [
       ./nixos/foundation.nix
+      ./uncommon/nvidia.nix
     ];
 
   # Enable OpenGL
@@ -133,9 +134,10 @@
 
   fonts = {
     packages = with pkgs; [
-      noto-fonts-cjk
-      noto-fonts-cjk-serif
-      noto-fonts-cjk-sans
+      apple-fonts
+      noto-fonts
+      noto-fonts-no-va.sans
+      noto-fonts-no-va.serif
       noto-fonts-emoji
       siji
       ibm-plex
@@ -144,12 +146,76 @@
       })
       intel-one-mono
     ];
+    fontDir = {
+      enable = true;
+    };
     fontconfig = {
-      defaultFonts = {
-        serif = [ "Noto Serif CJK SC" ];
-        sansSerif = [ "Noto Sans CJK SC" ];
-        monospace = [ "IBM Plex Mono" ];
+      antialias = true;
+      cache32Bit = true;
+      hinting = {
+        enable = true;
+        autohint = true;
       };
+
+      localConf = ''
+        <?xml version='1.0'?>
+        <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
+        <fontconfig>
+          <match target="pattern">
+            <test qual="any" name="family">
+              <string>sans-serif</string>
+            </test>
+            <edit mode="prepend" binding="strong" name="family">
+              <string>Noto Sans</string>
+            </edit>
+          </match>
+          <match target="pattern">
+            <test qual="any" name="family">
+              <string>serif</string>
+            </test>
+            <edit mode="prepend" binding="strong" name="family">
+              <string>Noto Serif</string>
+            </edit>
+          </match>
+          <match target="pattern">
+            <test qual="any" name="family">
+              <string>monospace</string>
+            </test>
+            <edit mode="prepend" binding="strong" name="family">
+              <string>IBM Plex Mono</string>
+            </edit>
+          </match>
+          <match>
+            <test name="family">
+              <string>monospace</string>
+            </test>
+            <edit name="family" mode="append_last" binding="strong">
+              <string>Noto Color Emoji</string>
+            </edit>
+          </match>
+          <!-- Fallback fonts preference order -->
+          <alias>
+            <family>sans-serif</family>
+            <prefer>
+              <family>Noto Color Emoji</family>
+              <family>PingFang SC</family>
+            </prefer>
+          </alias>
+          <alias>
+            <family>serif</family>
+            <prefer>
+              <family>Noto Color Emoji</family>
+              <family>Noto Serif CJK SC</family>
+            </prefer>
+          </alias>
+          <alias>
+            <family>monospace</family>
+            <prefer>
+              <family>BlexMono Nerd Font</family>
+            </prefer>
+          </alias>
+        </fontconfig>
+      '';
     };
   };
 
@@ -212,9 +278,8 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  programs.xwayland = {
-    enable = true;
-  };
+  # Home manager doesn't support this, aha.
+  programs.gpaste.enable = true;
 
   services.pipewire = {
     enable = true;

@@ -74,6 +74,7 @@ let
       "Mod4+Ctrl+q" = "exec dm-tool lock";
       "Mod4+Shift+Ctrl+s" = "exec flameshot gui -p ~/Images/Screenshots";
       "Mod4+Shift+s" = "exec flameshot gui";
+      "Mod4+v" = "exec ${pkgs.rofi-gpaste}/bin/rofi-gpaste";
     };
   };
   personalWorkspaceConfig = {
@@ -88,7 +89,7 @@ let
       "${mm}+z" = "workspace ${virt}";
       "${mm}+Ctrl+z" = "move to workspace ${virt}";
       "${mm}+f" = "floating toggle";
-      "${mm}+Ctrl+f" = "floating enable; move to workspace ${ext}";
+      "${mm}+Ctrl+f" = "floating enable; move to workspace ${ext}; workspace ${ext}";
       "${mm}+Return" = "fullscreen toggle";
       "${m}+Return" = "exec --no-startup-id $HOME/scripts/contextual-run";
       "${mm}+q" = "kill";
@@ -96,13 +97,16 @@ let
   };
   startup = [
     {
+      command = "${pkgs.flameshot}/bin/flameshot";
+      notification = false;
+    }
+    {
       command = "${pkgs.feh}/bin/feh --bg-fill ~/.background-image";
       notification = false;
     }
     {
       command = "${unstable.goldendict-ng}/bin/goldendict";
-      # This behavior is exactly what we need -- we don't want to bind golden dict into a workspace.
-      workspace = workspaces.ext;
+      notification = false;
     }
     {
       command = "systemctl restart --user polybar";

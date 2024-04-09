@@ -7,8 +7,11 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    hyprland.url = "github:hyprwm/Hyprland";
+    nixpkgs-unstable = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+      flake = true;
+    };
+    tikv-dev.url = "github:iosmanthus/tikv-flake";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
@@ -37,7 +40,9 @@
                     add-custom-derivations = self: super: {
                       rofi-nord-theme = import ./derivations/rofi-nord-theme super;
                       mono-gtk-theme = import ./derivations/mono-gtk-theme { pkgs = super; };
-                      yesplaymusic = import ./derivations/yesplaymusic super;
+                      apple-fonts = import ./derivations/apple-fonts.nix super;
+                      noto-fonts-no-va = import ./derivations/noto-fonts-no-va super;
+                      rofi-gpaste = import ./derivations/rofi-gpaste super;
                     };
                   in
                   [ add-custom-derivations ];
@@ -51,13 +56,11 @@
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.users."hillium".imports = [
-                  attrs.hyprland.homeManagerModules.default
                   ./nixos/home.nix
                 ];
                 home-manager.extraSpecialArgs = {
                   colors = import ./nixos/color.nix;
-                  unstable = specialArgs.unstable;
-                };
+                } // specialArgs;
               }
             ];
         };
