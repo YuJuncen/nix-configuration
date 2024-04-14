@@ -3,6 +3,7 @@
   imports = [
     ./softwares/i3
     ./softwares/rofi
+    ./xdg.nix
   ];
   options = { };
   config = {
@@ -18,54 +19,47 @@
         dconf
         feh
 
-        firefox
         openssl
         unzip
         virt-manager
+        xclip
         jq
         gh
+        emacs-nox
+        file
+        jless
+        wofi
+        lazygit
+        nil
+        gnupg
+        ripgrep
 
-        grim
-        xclip
-        cliphist
-        wlrctl
 
         # Because Lark doesn't support Firefox...
-        google-chrome
-        zoom-us
-
         gnome.nautilus
         gnome.eog
         gnome.seahorse
         gnome.gnome-bluetooth
         gnome.gnome-weather
         gnome.gpaste
+        gtk3
         gtk4
 
         cider
         calibre
         thunderbird
 
-        tdesktop
-
-        emacs-nox
-
         pavucontrol
         paprefs
 
-        file
-        jless
-        wofi
-        lazygit
-        nil
-        flameshot
-        openssl
-
-        ripgrep
+        tdesktop
         localsend
-        gnupg
-
         rofi-gpaste
+        flameshot
+        vlc
+        google-chrome
+        firefox
+        zoom-us
       ] ++ (with unstable; [
         vscode
         yesplaymusic
@@ -91,11 +85,6 @@
         };
       };
     };
-
-    # wayland.windowManager.hyprland = {
-    #   enable = true;
-    #   extraConfig = import ./softwares/hyprland/config.nix ctx;
-    # };
 
     i18n.inputMethod = {
       enabled = "fcitx5";
@@ -151,9 +140,6 @@
 
     xsession = {
       enable = true;
-      initExtra = ''
-        export QT_IM_MODULE=fcitx
-      '';
     };
 
     services = {
