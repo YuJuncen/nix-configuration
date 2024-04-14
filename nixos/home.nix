@@ -1,9 +1,10 @@
-{ pkgs, unstable, ... } @ ctx:
+{ pkgs, unstable, config, ... } @ ctx:
 {
   imports = [
     ./softwares/i3
     ./softwares/rofi
     ./xdg.nix
+    ./hidpi.nix
   ];
   options = { };
   config = {
@@ -13,7 +14,7 @@
       stateVersion = "23.11";
       sessionVariables = {
         EDITOR = "vim";
-        PATH = "$PATH:$HOME/.cargo/bin:$HOME/scripts";
+        PATH = "$PATH:$HOME/scripts";
       };
       packages = with pkgs; [
         dconf
@@ -34,16 +35,10 @@
         gnupg
         ripgrep
 
-
-        # Because Lark doesn't support Firefox...
-        gnome.nautilus
         gnome.eog
         gnome.seahorse
         gnome.gnome-bluetooth
-        gnome.gnome-weather
         gnome.gpaste
-        gtk3
-        gtk4
 
         cider
         calibre
@@ -60,7 +55,9 @@
         google-chrome
         firefox
         zoom-us
+        gtk-engine-murrine
       ] ++ (with unstable; [
+        gnome.nautilus
         vscode
         yesplaymusic
         goldendict-ng
@@ -108,17 +105,21 @@
     gtk = {
       enable = true;
       iconTheme = {
-        package = pkgs.tela-icon-theme;
-        name = "Tela";
+        package = pkgs.fluent-icon-theme;
+        name = "Fluent";
       };
       theme = {
-        package = pkgs.mono-gtk-theme;
-        name = "MonoTheme";
+        package = pkgs.fluent-gtk-theme.override {
+          tweaks = [ "square" ];
+          themeVariants = [ "teal" ];
+        };
+        name = "Fluent-teal-Light";
       };
-      font = {
-        name = "Noto Sans CJK SC";
-        package = pkgs.noto-fonts;
-      };
+    };
+    xdg.configFile = {
+      "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+      "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+      "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
     };
     fonts = {
       fontconfig = {
@@ -134,9 +135,7 @@
       };
     };
 
-    xresources.extraConfig = ''
-      Xft.dpi: 192
-    '';
+
 
     xsession = {
       enable = true;

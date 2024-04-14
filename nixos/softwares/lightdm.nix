@@ -5,8 +5,8 @@
   greeters.gtk = {
     enable = true;
     theme = {
-      package = pkgs.mono-gtk-theme;
-      name = "MonoThemeDark";
+      package = pkgs.fluent-gtk-theme;
+      name = "Fluent";
     };
     indicators = [ "~clock" "~spacer" "~session" ];
   };

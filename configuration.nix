@@ -67,11 +67,6 @@
   time.timeZone = "Asia/Shanghai";
 
 
-  environment.variables = {
-    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
-  };
-
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -108,7 +103,6 @@
     kitty
     geoclue2
 
-    glib
     picom
 
     nvidia-vaapi-driver
@@ -123,6 +117,7 @@
     # xdg-utils # for opening default programs when clicking links
     # wl-clipboard
     glib # gsettings
+    glibc
 
     polkit-kde-agent
   ];
@@ -297,4 +292,6 @@
     enable = true;
     package = unstable.sing-box;
   };
+
+  networking.hostName = "structure";
 }
