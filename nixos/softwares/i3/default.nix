@@ -124,7 +124,7 @@ let
     "${m}+space" = "exec --no-startup-id rofi -show drun";
     "${mm}+a" = "exec --no-startup-id rofi -show window";
     "${m}+Shift+space" = "exec --no-startup-id rofi -show run";
-    "${mm}+m" = "exec --no-startup-id rofi -show ciderctl";
+    "${mm}+m" = "exec --no-startup-id rofi -show playerctl";
     "${m}+p" = "exec --no-startup-id rofi -show calc";
   };
   mergeAll = builtins.foldl' (a: b: a // b) { };

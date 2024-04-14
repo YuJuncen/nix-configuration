@@ -136,8 +136,8 @@
     packages = with pkgs; [
       apple-fonts
       noto-fonts
-      noto-fonts-no-va.sans
-      noto-fonts-no-va.serif
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       noto-fonts-emoji
       siji
       ibm-plex
@@ -198,7 +198,7 @@
             <family>sans-serif</family>
             <prefer>
               <family>Noto Color Emoji</family>
-              <family>PingFang SC</family>
+              <family>Noto Sans CJK SC</family>
             </prefer>
           </alias>
           <alias>
