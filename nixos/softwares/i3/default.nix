@@ -86,10 +86,12 @@ let
       "${mm}+v" = "workspace ${v}";
       "${mm}+Ctrl+v" = "move to workspace ${v}";
       "${mm}+1" = "workspace ${ext}";
+      "${mm}+2" = "workspace ${misc}";
       "${mm}+z" = "workspace ${virt}";
       "${mm}+Ctrl+z" = "move to workspace ${virt}";
       "${mm}+f" = "floating toggle";
       "${mm}+Ctrl+f" = "floating enable; move to workspace ${ext}; workspace ${ext}";
+      "${mm}+Ctrl+g" = "floating disable; move to workspace ${misc}";
       "${mm}+Return" = "fullscreen toggle";
       "${m}+Return" = "exec --no-startup-id $HOME/scripts/contextual-run";
       "${mm}+q" = "kill";
@@ -105,7 +107,8 @@ let
       notification = false;
     }
     {
-      command = "${unstable.goldendict-ng}/bin/goldendict";
+      # FIXME: Or goldendict exits with code zero.
+      command = "nix-shell -p --command ${pkgs.goldendict-ng}/bin/goldendict";
       notification = false;
     }
     {
@@ -158,6 +161,7 @@ in
           { workspace = workspaces.ext; }
           { class = "org.gnome.Nautilus"; }
           { instance = "calibre-ebook-viewer"; }
+          { class = "Bytedance-feishu"; title = "(?!Feishu).*"; }
         ];
         border = 0;
       };

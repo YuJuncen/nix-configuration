@@ -117,7 +117,6 @@
     # xdg-utils # for opening default programs when clicking links
     # wl-clipboard
     glib # gsettings
-    glibc
 
     polkit-kde-agent
   ];

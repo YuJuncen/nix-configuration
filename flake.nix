@@ -43,6 +43,7 @@
                       apple-fonts = import ./derivations/apple-fonts.nix super;
                       noto-fonts-no-va = import ./derivations/noto-fonts-no-va super;
                       rofi-gpaste = import ./derivations/rofi-gpaste super;
+                      goldendict-ng-debug = import ./derivations/goldendict-ng-debug.nix super;
                     };
                   in
                   [ add-custom-derivations ];

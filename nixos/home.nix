@@ -54,13 +54,18 @@
         vlc
         google-chrome
         firefox
-        zoom-us
         gtk-engine-murrine
+
+        gdb
+        rr
+
+        zoom-us
+        feishu
+        slack
       ] ++ (with unstable; [
         gnome.nautilus
         vscode
         yesplaymusic
-        goldendict-ng
         netease-cloud-music-gtk
       ]);
       pointerCursor = {
@@ -105,15 +110,17 @@
     gtk = {
       enable = true;
       iconTheme = {
-        package = pkgs.fluent-icon-theme;
-        name = "Fluent";
+        package = pkgs.fluent-icon-theme.override {
+          colorVariants = [ "teal" ];
+        };
+        name = "Fluent-teal-dark";
       };
       theme = {
         package = pkgs.fluent-gtk-theme.override {
           tweaks = [ "square" ];
           themeVariants = [ "teal" ];
         };
-        name = "Fluent-teal-Light";
+        name = "Fluent-teal-Dark";
       };
     };
     xdg.configFile = {
@@ -134,7 +141,6 @@
         name = "adwaita";
       };
     };
-
 
 
     xsession = {
