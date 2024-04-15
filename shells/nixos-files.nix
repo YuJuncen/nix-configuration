@@ -1,13 +1,13 @@
-{ tikv-dev, ... } @ ctx:
+{ ... }:
 {
   "tikv-dev" = {
     target = "shells/tikv-dev";
     # FIXME: not hard-code here.
-    source = tikv-dev;
+    source = ./tikv-dev;
   };
   "tidb-dev" = {
-    target = "shells/tidb-dev";
-    source = ./tidb-flake;
+    target = "shells/go-general-dev";
+    source = ./go-general-flake;
   };
   "rocksdb-dev" = {
     target = "shells/rocksdb-dev";

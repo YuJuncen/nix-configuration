@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { }, colors ? import ../../nixos/color.nix, ... }:
+{ pkgs ? import <nixpkgs> { }, colors ? import ../../home-manager/color.nix, ... }:
 with pkgs;
 let
   mkGlobCss = item:

@@ -34,14 +34,16 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   nativeBuildInputs = [ pkg-config cmake qt6.wrapQtAppsHook wrapGAppsHook ];
-  buildInputs = with qt6; [qtbase
+  buildInputs = with qt6; [
+    qtbase
     qtsvg
     qttools
     qtwebengine
     qt5compat
     qtmultimedia
-    qtspeech] ++ [
-    
+    qtspeech
+  ] ++ [
+
     libvorbis
     tomlplusplus
     fmt

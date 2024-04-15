@@ -12,6 +12,7 @@ docker container start $1 && docker exec -it $1 ''${2:-bash}
     target = "scripts/codenv";
     text = ''#! /usr/bin/env bash
 cd $HOME/shells/$1
+if [ -f env-init ]; then . env-init; fi
 shift
 nix develop -c code "$@"
 '';
@@ -29,7 +30,7 @@ nix develop -c code "$@"
   "ggpr" = {
     executable = true;
     target = "scripts/ggpr";
-    text =''
+    text = ''
       #! /usr/bin/env fish
       set res (gh pr list --author "@me" | fzf | awk '{print $1}')
       if [ "$res" ]

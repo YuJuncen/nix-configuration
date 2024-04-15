@@ -3,6 +3,8 @@
   imports = [
     ./softwares/i3
     ./softwares/rofi
+    ./softwares/tmux.nix
+
     ./xdg.nix
     ./hidpi.nix
     ./dotfiles
@@ -55,7 +57,6 @@
         flameshot
         vlc
         google-chrome
-        firefox
         gtk-engine-murrine
 
         gdb
@@ -64,7 +65,9 @@
         zoom-us
         feishu
         slack
+        goldendict-ng
       ] ++ (with unstable; [
+        firefox
         gnome.nautilus
         vscode
         yesplaymusic

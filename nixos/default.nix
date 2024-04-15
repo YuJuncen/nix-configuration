@@ -6,8 +6,8 @@
 {
   imports =
     [
-      ./nixos/foundation.nix
-      ./uncommon/nvidia.nix
+      ./use-tuna-mirror.nix
+      ./polkit.nix
     ];
 
   # Enable OpenGL
@@ -277,6 +277,7 @@
   # Home manager doesn't support this, aha.
   programs.gpaste.enable = true;
 
+  # hardware.pulseaudio.enable = true;
   services.pipewire = {
     enable = true;
     audio.enable = true;
@@ -286,6 +287,7 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
+
   services.gvfs.enable = true;
   services.dbus.enable = true;
   security.rtkit.enable = true;

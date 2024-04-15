@@ -11,7 +11,6 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
       flake = true;
     };
-    tikv-dev.url = "github:iosmanthus/tikv-flake";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
@@ -24,7 +23,7 @@
         in
         nixpkgs.lib.nixosSystem rec {
           specialArgs = attrs // {
-            colors = import ./nixos/color.nix;
+            colors = import ./home-manager/color.nix;
             unstable = import nixpkgs-unstable {
               inherit system;
               config = {
@@ -44,23 +43,35 @@
                       noto-fonts-no-va = import ./derivations/noto-fonts-no-va super;
                       rofi-gpaste = import ./derivations/rofi-gpaste super;
                       goldendict-ng-debug = import ./derivations/goldendict-ng-debug.nix super;
+
+                    };
+                    feishu-latest = self: super: {
+                      feishu = super.feishu.overrideAttrs (_: rec {
+                        version = "7.11.9";
+                        packageHash = "ec62a2df";
+                        src = builtins.fetchurl {
+                          url = "https://sf3-cn.feishucdn.com/obj/ee-appcenter/${packageHash}/Feishu-linux_x64-${version}.deb";
+                          sha256 = "1c4ggcq10knb1gac6rmlb5mdxlz1xrz6i735mfqinvr7qfrqzi4q";
+                        };
+                      });
                     };
                   in
-                  [ add-custom-derivations ];
+                  [ add-custom-derivations feishu-latest ];
               };
             in
             [
               overlayConfig
-              ./configuration.nix
+              ./nixos
               ./uncommon/hardware-config.nix
+              ./uncommon/nvidia.nix
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.users."hillium".imports = [
-                  ./nixos/home.nix
+                  ./home-manager/home.nix
                 ];
                 home-manager.extraSpecialArgs = {
-                  colors = import ./nixos/color.nix;
+                  colors = import ./home-manager/color.nix;
                 } // specialArgs;
               }
             ];

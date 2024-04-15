@@ -90,7 +90,7 @@ let
       "${mm}+z" = "workspace ${virt}";
       "${mm}+Ctrl+z" = "move to workspace ${virt}";
       "${mm}+f" = "floating toggle";
-      "${mm}+t" = "sticking toggle";
+      "${mm}+t" = "sticky toggle";
       "${mm}+Ctrl+f" = "floating enable; move to workspace ${ext}; workspace ${ext}";
       "${mm}+Ctrl+g" = "floating disable; move to workspace ${misc}";
       "${mm}+Return" = "fullscreen toggle";
@@ -109,11 +109,15 @@ let
     }
     {
       # FIXME: Or goldendict exits with code zero.
-      command = "nix-shell -p --command ${pkgs.goldendict-ng}/bin/goldendict";
+      command = "${pkgs.goldendict-ng}/bin/goldendict";
       notification = false;
     }
     {
       command = "systemctl restart --user polybar";
+      notification = false;
+    }
+    {
+      command = "dbus-update-activation-environment --all";
       notification = false;
     }
   ];
@@ -143,7 +147,8 @@ in
       focus_follows_mouse no
       tiling_drag titlebar
       
-      for_window [title="Feishu Meetings" class="(?!Meeting).*"] floating enable, sticky enable
+      for_window [title="Feishu Meetings" class="^$"] floating enable, sticky enable
+      for_window [title="Feishu Meetings" instance="ShareScreenFloatingPanelWindowBase"] floating enable, sticky enable
     '';
     config = {
       inherit fonts window startup;
@@ -164,7 +169,7 @@ in
           { workspace = workspaces.ext; }
           { class = "org.gnome.Nautilus"; }
           { instance = "calibre-ebook-viewer"; }
-          { class = "Bytedance-feishu"; title = "(?!Feishu).*"; }
+          { class = "Bytedance-feishu"; title = "^(?!Feishu).*"; }
         ];
         border = 0;
       };

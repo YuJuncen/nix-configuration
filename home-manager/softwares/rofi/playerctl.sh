@@ -2,9 +2,9 @@
 
 set -eu
 
-title="$(playerctl metadata title)"
-album="$(playerctl metadata album)"
-artist="$(playerctl metadata artist)"
+title="$(playerctl metadata title || echo "N/A")"
+album="$(playerctl metadata album || echo "N/A")"
+artist="$(playerctl metadata artist || echo "N/A")"
 options=(
     "Pause / Play\0icon\x1fmedia-playback-start"
     "Replay\0icon\x1fmedia-playlist-repeat"

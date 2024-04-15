@@ -1,20 +1,5 @@
 {
   "nodes": {
-    "flake-utils": {
-      "locked": {
-        "lastModified": 1623875721,
-        "narHash": "sha256-A8BU7bjS5GirpAUv4QA+QnJ4CceLHkcXdRp4xITDB0s=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "f7e004a55b120c02ecb6219596820fcd32ca8772",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -68,47 +53,11 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1652286022,
-        "narHash": "sha256-gBLr5sp9whiSb7cl8qIabJhAZpMcLjh4zvQm+6avEBY=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "542eff225dcacac9d105b835333a70bcb5b75500",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-unstable": "nixpkgs-unstable",
-        "tikv-dev": "tikv-dev"
-      }
-    },
-    "tikv-dev": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1657639707,
-        "narHash": "sha256-u3HuowqdB3KTjqf5hWf5IAaC44RqorweEidlTWtl5ac=",
-        "owner": "iosmanthus",
-        "repo": "tikv-flake",
-        "rev": "f16daea0a4f0e57d10a19df4948e74855822bb32",
-        "type": "github"
-      },
-      "original": {
-        "owner": "iosmanthus",
-        "repo": "tikv-flake",
-        "type": "github"
+        "nixpkgs-unstable": "nixpkgs-unstable"
       }
     }
   },

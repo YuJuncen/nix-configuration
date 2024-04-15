@@ -21,13 +21,13 @@
             nativeBuildInputs = with pkgs;[ cmake pkg-config gcc ];
             buildInputs = with pkgs;[ git gnumake zlib mold zstd lz4 gflags gdb ];
             PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig:${pkgs.lz4.dev}/lib/pkgconfig:${pkgs.zstd.dev}/lib/pkgconfig";
-            CC="${pkgs.gcc}/bin/cc";
-            CXX="${pkgs.gcc}/bin/g++";
+            CC = "${pkgs.gcc}/bin/cc";
+            CXX = "${pkgs.gcc}/bin/g++";
+            # CMAKE FLAGS HINT: -DWITH_ZSTD=1 -DWITH_LZ4=1 -DFAIL_ON_WARNINGS=OFF -DCMAKE_CXX_STANDARD=20
             shellHook = ''
-            export CC="${pkgs.gcc}/bin/cc";
-            export CXX="${pkgs.gcc}/bin/g++";
-            export CXXFLAGS="-include cstdint";
-            echo "CMAKE FLAGS HINT: -DWITH_ZSTD=1 -DWITH_LZ4=1 -DFAIL_ON_WARNINGS=OFF -DCMAKE_CXX_STANDARD=20"
+              export CC="${pkgs.gcc}/bin/cc";
+              export CXX="${pkgs.gcc}/bin/g++";
+              export CXXFLAGS="-include cstdint";
             '';
           };
         }
