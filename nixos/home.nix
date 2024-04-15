@@ -5,6 +5,7 @@
     ./softwares/rofi
     ./xdg.nix
     ./hidpi.nix
+    ./dotfiles
   ];
   options = { };
   config = {
@@ -39,6 +40,7 @@
         gnome.seahorse
         gnome.gnome-bluetooth
         gnome.gpaste
+        gnome.gnome-terminal
 
         cider
         calibre

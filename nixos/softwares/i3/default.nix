@@ -90,6 +90,7 @@ let
       "${mm}+z" = "workspace ${virt}";
       "${mm}+Ctrl+z" = "move to workspace ${virt}";
       "${mm}+f" = "floating toggle";
+      "${mm}+t" = "sticking toggle";
       "${mm}+Ctrl+f" = "floating enable; move to workspace ${ext}; workspace ${ext}";
       "${mm}+Ctrl+g" = "floating disable; move to workspace ${misc}";
       "${mm}+Return" = "fullscreen toggle";
@@ -141,6 +142,8 @@ in
       workspace_layout tabbed
       focus_follows_mouse no
       tiling_drag titlebar
+      
+      for_window [title="Feishu Meetings" class="(?!Meeting).*"] floating enable, sticky enable
     '';
     config = {
       inherit fonts window startup;

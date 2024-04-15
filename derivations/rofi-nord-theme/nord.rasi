@@ -26,7 +26,7 @@ The build script will add a color schema into here, like:
 
 * {
     background-color:   transparent;
-    text-color:         @background;
+    text-color:         @foreground;
     accent-color:       @primary;
 
     margin:     0px;
@@ -35,7 +35,7 @@ The build script will add a color schema into here, like:
 }
 
 window {
-    background-color:   @white;
+    background-color:   @background;
     border-color:       @accent-color;
 
     location:   center;
@@ -81,7 +81,6 @@ element normal active {
 }
 
 element selected {
-    text-color: @white;
     text-style: bold;
     background-color: @primary;
 }
@@ -89,13 +88,12 @@ element selected {
 element selected normal {
     text-style: bold;
     background-color: @primary;
-    text-color: @white;
 }
 
 element selected urgent {
     border: 0 0 0 10px; 
     border-color: @alert;
-    text-color:   @white;
+    text-color: @background;
     text-style: bold;
     background-color: @alert;
 }
@@ -104,7 +102,7 @@ element selected active {
     border: 0 0 0 10px; 
     border-color: @secondary;
     text-style: bold;
-    text-color:   @white;
+    text-color: @background;
     background-color: @secondary;
 }
 

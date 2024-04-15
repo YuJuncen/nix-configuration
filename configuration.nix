@@ -118,7 +118,9 @@
     # wl-clipboard
     glib # gsettings
 
-    polkit-kde-agent
+    usbutils
+    pciutils
+    bluetuith
   ];
 
   nixpkgs.config.allowUnfree = true;

@@ -25,4 +25,29 @@ nix develop -c code "$@"
       git checkout "$@"
     '';
   };
+
+  "ggpr" = {
+    executable = true;
+    target = "scripts/ggpr";
+    text =''
+      #! /usr/bin/env fish
+      set res (gh pr list --author "@me" | fzf | awk '{print $1}')
+      if [ "$res" ]
+          gh pr checkout "$res"
+      end
+    '';
+  };
+
+  "ggcp" = {
+    executable = true;
+    target = "scripts/ggcp";
+    text = ''
+      #! /usr/bin/env fish
+      set v $argv[1]
+      set res (gh pr list --assignee 'YuJuncen' -l "type/cherry-pick-for-release-$v" | fzf | awk '{print $1}')
+      if [ "$res" ]
+          gh pr checkout "$res"
+      end
+    '';
+  };
 }

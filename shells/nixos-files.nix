@@ -9,4 +9,8 @@
     target = "shells/tidb-dev";
     source = ./tidb-flake;
   };
+  "rocksdb-dev" = {
+    target = "shells/rocksdb-dev";
+    source = ./rocksdb-flake;
+  };
 }
