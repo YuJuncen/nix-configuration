@@ -43,7 +43,6 @@
                       noto-fonts-no-va = import ./derivations/noto-fonts-no-va super;
                       rofi-gpaste = import ./derivations/rofi-gpaste super;
                       goldendict-ng-debug = import ./derivations/goldendict-ng-debug.nix super;
-
                     };
                     feishu-latest = self: super: {
                       feishu = super.feishu.overrideAttrs (_: rec {
