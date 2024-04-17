@@ -1,10 +1,10 @@
 {
   workspaces = {
-    ext = "1:1:Extras";
-    misc = "2:2:Splits";
-    c = "13:C:Browsers";
-    x = "12:X:Terminals";
-    v = "14:V:Editor";
-    virt = "10:Z:VM";
+    ext = "1:[󰨝  1]";
+    misc = "2:[  2]";
+    c = "13:[  C]";
+    x = "12:[  X]";
+    v = "14:[󰘙  V]";
+    virt = "10:[󰢹  Z]";
   };
 }

@@ -59,6 +59,7 @@
         google-chrome
         gtk-engine-murrine
 
+        firefox
         gdb
         rr
 
@@ -67,8 +68,8 @@
         slack
         goldendict-ng
       ] ++ (with unstable; [
-        firefox
         gnome.nautilus
+        gnome.zenity
         vscode
         yesplaymusic
         netease-cloud-music-gtk

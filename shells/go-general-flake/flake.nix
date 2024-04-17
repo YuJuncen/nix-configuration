@@ -29,6 +29,7 @@
               impl
               mockgen
               bazel-gazelle
+              bazel
 
               go_1_21
             ];

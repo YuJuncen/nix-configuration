@@ -58,10 +58,29 @@
     displayManager = {
       lightdm = {
         enable = true;
+        background = ../uncommon/wallpaper.jpg;
+        greeters.gtk = {
+          enable = true;
+          iconTheme = {
+            package = pkgs.fluent-icon-theme.override {
+              colorVariants = [ "teal" ];
+            };
+            name = "Fluent-teal-dark";
+          };
+          theme = {
+            package = pkgs.fluent-gtk-theme.override {
+              tweaks = [ "square" ];
+              themeVariants = [ "teal" ];
+            };
+            name = "Fluent-teal-Dark";
+          };
+          extraConfig = ''
+          xft-dpi=192
+          '';
+        };
       };
     };
     windowManager.i3.enable = true;
-    dpi = 192;
   };
   environment.pathsToLink = [ "/libexec" ];
   time.timeZone = "Asia/Shanghai";
@@ -116,11 +135,12 @@
     # wayland
     # xdg-utils # for opening default programs when clicking links
     # wl-clipboard
-    glib # gsettings
 
     usbutils
     pciutils
     bluetuith
+
+    gtk4
   ];
 
   nixpkgs.config.allowUnfree = true;

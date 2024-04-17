@@ -17,5 +17,6 @@
   };
   gtk.gtk4.extraConfig = {
     gtk-font-name = "PingFang CJK SC 6";
+    gtk-xft-dpi = 196608 / 2;
   };
 }

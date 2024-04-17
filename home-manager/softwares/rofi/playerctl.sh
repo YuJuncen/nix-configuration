@@ -11,9 +11,9 @@ options=(
     "Previous\0icon\x1fmedia-seek-backward"
     "Next\0icon\x1fmedia-seek-forward"
     "━━━┫ Now Playing ┣━━━\0nonselectable\x1ftrue\x1fpermanent\x1ftrue"
-    "Title ┃ $title\0nonselectable\x1ftrue\x1fpermanent\x1ftrue"
-    "Album ┃ $album\0nonselectable\x1ftrue\x1fpermanent\x1ftrue"
-    "Artist ┃ $artist\0nonselectable\x1ftrue\x1fpermanent\x1ftrue"
+    "$title\0nonselectable\x1ftrue\x1fpermanent\x1ftrue\x1ficon\x1fmedia-album-track"
+    "$album\0nonselectable\x1ftrue\x1fpermanent\x1ftrue\x1ficon\x1ffilename-album-amarok"
+    "$artist\0nonselectable\x1ftrue\x1fpermanent\x1ftrue\x1ficon\x1famarok_artist"
 )
 
 success=1

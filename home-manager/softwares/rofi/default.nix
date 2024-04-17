@@ -1,5 +1,10 @@
 { pkgs, unstable, ... } @ ctx: {
-
+  home.packages = [
+    unstable.gnome.zenity
+    pkgs.jq
+    pkgs.kitty
+    pkgs.pavucontrol
+  ];
   programs.rofi = {
     enable = true;
     font = "Noto Serif CJK SC 24";
@@ -12,7 +17,8 @@
       terminal = "${pkgs.kitty}/bin/kitty";
       modes = "drun,run,ssh,calc," +
         "playerctl:${./playerctl.sh}," +
-        "codenv:${./workspaces.sh}";
+        "codenv:${./workspaces.sh}," +
+        "controlpanel:${./controlpanel.sh}";
     };
   };
 }

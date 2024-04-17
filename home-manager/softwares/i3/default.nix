@@ -132,8 +132,8 @@ let
     "${m}+space" = "exec --no-startup-id rofi -show drun";
     "${mm}+a" = "exec --no-startup-id rofi -show window";
     "${m}+Shift+space" = "exec --no-startup-id rofi -show run";
-    "${mm}+m" = "exec --no-startup-id rofi -show playerctl";
-    "${m}+p" = "exec --no-startup-id rofi -show calc";
+    "${m}+m" = "exec --no-startup-id rofi -show playerctl";
+    "${m}+p" = "exec --no-startup-id rofi -show controlpanel";
   };
   mergeAll = builtins.foldl' (a: b: a // b) { };
 in
@@ -147,8 +147,7 @@ in
       focus_follows_mouse no
       tiling_drag titlebar
       
-      for_window [title="Feishu Meetings" class="^$"] floating enable, sticky enable
-      for_window [title="Feishu Meetings" instance="ShareScreenFloatingPanelWindowBase"] floating enable, sticky enable
+      for_window [title="Feishu Meetings" instance="^(?!Main_Meeting).*"] floating enable, sticky enable
     '';
     config = {
       inherit fonts window startup;
@@ -166,10 +165,12 @@ in
       floating = {
         criteria = [
           { class = "GoldenDict"; }
-          { workspace = workspaces.ext; }
+          { workspace = "^1:"; }
           { class = "org.gnome.Nautilus"; }
           { instance = "calibre-ebook-viewer"; }
           { class = "Bytedance-feishu"; title = "^(?!Feishu).*"; }
+          { class = "SystemCtl"; }
+          { instance = "pavucontrol"; }
         ];
         border = 0;
       };
