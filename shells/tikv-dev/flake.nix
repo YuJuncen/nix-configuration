@@ -19,20 +19,18 @@
           python-env = python.withPackages (p: with p; [
             redis
           ]);
-          # Fetch new toolchain: curl -LO https://raw.githubusercontent.com/tikv/tikv/master/rust-toolchain.toml
-          rustTools = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
         in
         {
           devShell = pkgs.mkShell {
-
             hardeningDisable = [ "all" ];
             # We added rustup for making some scripts happy...
-            buildInputs = with pkgs;[ cmake pkg-config python-env gcc zsh git gnumake protobuf3_8 perl zlib openssl rustTools rustup ];
+            buildInputs = with pkgs;[ cmake pkg-config python-env gcc zsh git gnumake protobuf3_8 perl zlib openssl rustup ];
             PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
             PROTOC = "${pkgs.protobuf3_8}/bin/protoc";
             shellHook = ''
               PYTHONPATH=${python-env}/${python-env.sitePackages}
             '';
+            NIX_LD = builtins.readFile "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
           };
         }
       );

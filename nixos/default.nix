@@ -8,6 +8,7 @@
     [
       ./use-tuna-mirror.nix
       ./polkit.nix
+      ./nix-ld.nix
     ];
 
   # Enable OpenGL
