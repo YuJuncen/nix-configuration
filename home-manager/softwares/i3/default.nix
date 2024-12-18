@@ -1,6 +1,6 @@
 # Place: home-manager
 
-{ pkgs, lib, colors, unstable, ... }:
+{ pkgs, lib, colors, ... }:
 
 let
   common = import ./common.nix;
@@ -61,6 +61,7 @@ let
       "${mm}+Ctrl+l" = "move right";
 
       "${mm}+g" = "split h";
+      "${mm}+b" = "split v";
     };
     modes.resize = {
       h = "resize shrink width 10 px";
@@ -92,7 +93,7 @@ let
       "${mm}+f" = "floating toggle";
       "${mm}+t" = "sticky toggle";
       "${mm}+Ctrl+f" = "floating enable; move to workspace ${ext}; workspace ${ext}";
-      "${mm}+Ctrl+g" = "floating disable; move to workspace ${misc}";
+      "${mm}+Ctrl+g" = "floating disable; move to workspace ${misc}; workspace ${misc}";
       "${mm}+Return" = "fullscreen toggle";
       "${m}+Return" = "exec --no-startup-id $HOME/scripts/contextual-run";
       "${mm}+q" = "kill";

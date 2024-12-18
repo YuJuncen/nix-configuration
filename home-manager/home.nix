@@ -68,6 +68,7 @@
         slack
         goldendict-ng
         vivaldi
+        ffmpeg
       ] ++ (with unstable; [
         nautilus
         zenity
@@ -83,8 +84,7 @@
         name = "Yaru";
       };
       file = import ./softwares/i3/scripts.nix ctx //
-        import ./util-scripts.nix //
-        import ../shells/nixos-files.nix ctx // {
+        import ./util-scripts.nix // {
         electron-wayland = {
           target = ".config/electron25-flags.conf";
           text = ''
