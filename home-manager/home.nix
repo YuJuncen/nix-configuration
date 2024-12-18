@@ -67,12 +67,14 @@
         feishu
         slack
         goldendict-ng
+        vivaldi
       ] ++ (with unstable; [
-        gnome.nautilus
-        gnome.zenity
+        nautilus
+        zenity
         vscode
         yesplaymusic
         netease-cloud-music-gtk
+        gnome-system-monitor
       ]);
       pointerCursor = {
         gtk.enable = true;

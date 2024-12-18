@@ -21,7 +21,7 @@ options='[
     {
         "show": "Shutdown",
         "icon": "xfsm-shutdown",
-        "cmd": [ "bash", "-c", "zenity --question --title \"\" --icon \"xfsm-shutdown\" --text \"Shutdown now?\" && systemctl shutdown" ]
+        "cmd": [ "bash", "-c", "zenity --question --title \"\" --icon \"xfsm-shutdown\" --text \"Shutdown now?\" && systemctl poweroff" ]
     },
     {
         "show": "Reboot",

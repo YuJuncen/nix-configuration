@@ -80,15 +80,15 @@ let
   personalWorkspaceConfig = {
     bindings = with workspaces; {
       "${mm}+c" = "workspace ${c}";
-      "${mm}+Ctrl+c" = "move to workspace ${c}";
+      "${mm}+Ctrl+c" = "move to workspace ${c}; workspace ${c}";
       "${mm}+x" = "workspace ${x}";
-      "${mm}+Ctrl+x" = "move to workspace ${x}";
+      "${mm}+Ctrl+x" = "move to workspace ${x}; workspace ${x}";
       "${mm}+v" = "workspace ${v}";
-      "${mm}+Ctrl+v" = "move to workspace ${v}";
+      "${mm}+Ctrl+v" = "move to workspace ${v}; workspace ${v}";
       "${mm}+1" = "workspace ${ext}";
       "${mm}+2" = "workspace ${misc}";
       "${mm}+z" = "workspace ${virt}";
-      "${mm}+Ctrl+z" = "move to workspace ${virt}";
+      "${mm}+Ctrl+z" = "move to workspace ${virt}; workspace ${virt}";
       "${mm}+f" = "floating toggle";
       "${mm}+t" = "sticky toggle";
       "${mm}+Ctrl+f" = "floating enable; move to workspace ${ext}; workspace ${ext}";
@@ -148,6 +148,7 @@ in
       tiling_drag titlebar
       
       for_window [title="Feishu Meetings" instance="^(?!Main_Meeting).*"] floating enable, sticky enable
+      for_window [urgent="latest"] focus
     '';
     config = {
       inherit fonts window startup;

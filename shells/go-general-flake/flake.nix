@@ -31,7 +31,7 @@
               bazel-gazelle
               bazel
 
-              go_1_21
+              go
             ];
             shellHook = ''
               export GOROOT=$(go env GOROOT)

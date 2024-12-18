@@ -14,7 +14,7 @@ docker container start $1 && docker exec -it $1 ''${2:-bash}
 cd $HOME/shells/$1
 if [ -f env-init ]; then . env-init; fi
 shift
-nix develop -c code "$@"
+nix develop --impure -c code "$@"
 '';
   };
 

@@ -6,7 +6,7 @@ base="$HOME/shells"
 
 if [ "$*" ] && [ -e "$base/$*" ]; then
     cd "$base/$*"
-    nix develop --command code
+    nix develop --impure --command code
     exit 0
 elif [ "$*" == "Current Env" ]; then
     code

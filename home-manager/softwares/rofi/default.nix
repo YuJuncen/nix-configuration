@@ -1,6 +1,6 @@
 { pkgs, unstable, ... } @ ctx: {
   home.packages = [
-    unstable.gnome.zenity
+    unstable.zenity
     pkgs.jq
     pkgs.kitty
     pkgs.pavucontrol

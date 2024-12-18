@@ -30,7 +30,6 @@
             shellHook = ''
               PYTHONPATH=${python-env}/${python-env.sitePackages}
             '';
-            NIX_LD = builtins.readFile "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
           };
         }
       );
