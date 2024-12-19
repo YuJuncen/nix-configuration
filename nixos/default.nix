@@ -6,16 +6,17 @@
 {
   imports =
     [
+      ../modules/sing-box
+
       ./use-tuna-mirror.nix
       ./polkit.nix
       ./nix-ld.nix
     ];
 
   # Enable OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   hardware.nvidia = {
@@ -90,11 +91,8 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  sound.enable = true;
-
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput = {
+  services.libinput = {
     enable = true;
     mouse = {
       naturalScrolling = true;
@@ -265,7 +263,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
   virtualisation.docker = {
     enable = true;
@@ -312,9 +310,9 @@
   services.gvfs.enable = true;
   services.dbus.enable = true;
   security.rtkit.enable = true;
-  services.sing-box = {
+  services.self-hosted.sing-box = {
     enable = true;
-    package = unstable.sing-box;
+    configFile = "/var/lib/sing-box/config.json";
   };
 
   networking.hostName = "structure";

@@ -14,7 +14,7 @@
     home = {
       username = "hillium";
       homeDirectory = "/home/hillium";
-      stateVersion = "23.11";
+      stateVersion = "24.11";
       sessionVariables = {
         EDITOR = "vim";
         PATH = "$PATH:$HOME/scripts";
@@ -38,11 +38,11 @@
         gnupg
         ripgrep
 
-        gnome.eog
-        gnome.seahorse
-        gnome.gnome-bluetooth
-        gnome.gpaste
-        gnome.gnome-terminal
+        eog
+        seahorse
+        gnome-bluetooth
+        gpaste
+        gnome-terminal
 
         cider
         calibre
@@ -63,13 +63,16 @@
         gdb
         rr
 
+        gtk3
+        gtk4
+
         zoom-us
         feishu
         slack
         goldendict-ng
-        vivaldi
         ffmpeg
       ] ++ (with unstable; [
+        vivaldi
         nautilus
         zenity
         vscode
@@ -143,7 +146,9 @@
     };
     qt = {
       enable = true;
-      platformTheme = "gnome";
+      platformTheme = {
+        name = "adwaita";
+      };
       style = {
         package = pkgs.adwaita-qt;
         name = "adwaita-dark";

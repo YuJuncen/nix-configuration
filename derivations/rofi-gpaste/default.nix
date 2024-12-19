@@ -2,7 +2,7 @@
 with pkgs;
 stdenv.mkDerivation {
   name = "rofi-gpaste";
-  buildInput = [ xdotool gnome.gpaste gnome.zenity ];
+  buildInput = [ xdotool gpaste zenity ];
   src = fetchFromGitHub {
     owner = "yusufaktepe";
     repo = "rofi-gpaste";
@@ -14,7 +14,7 @@ stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out/bin
     sed -i "s|xdotool|${xdotool}/bin/xdotool|g" rofi-gpaste
-    sed -i "s|gpaste-client|${gnome.gpaste}/bin/gpaste-client|g" rofi-gpaste
+    sed -i "s|gpaste-client|${gpaste}/bin/gpaste-client|g" rofi-gpaste
     sed -i "s|zenity|${gnome.zenity}/bin/zenity|g" rofi-gpaste
     cp -r rofi-gpaste $out/bin/rofi-gpaste
   '';
