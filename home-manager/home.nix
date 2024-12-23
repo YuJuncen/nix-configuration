@@ -4,6 +4,7 @@
     ./softwares/i3
     ./softwares/rofi
     ./softwares/tmux.nix
+    ./softwares/wezterm.nix
 
     ./xdg.nix
     ./hidpi.nix

@@ -40,7 +40,7 @@ let
     while ! [ -f ${cfg.configFile} ]; do
       sleep 1;
     done;
-    sing-box run -c ${cfg.configFile} -D /var/lib/sing-box --disable-color
+    sing-box run -c ${cfg.configFile} -D $STATE_DIRECTORY --disable-color
   '';
 in
 {
