@@ -15,7 +15,7 @@ stdenv.mkDerivation {
     mkdir -p $out/bin
     sed -i "s|xdotool|${xdotool}/bin/xdotool|g" rofi-gpaste
     sed -i "s|gpaste-client|${gpaste}/bin/gpaste-client|g" rofi-gpaste
-    sed -i "s|zenity|${gnome.zenity}/bin/zenity|g" rofi-gpaste
+    sed -i "s|zenity|${zenity}/bin/zenity|g" rofi-gpaste
     cp -r rofi-gpaste $out/bin/rofi-gpaste
   '';
 }

@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [ ];
@@ -6,8 +6,8 @@
   config = {
     programs.wezterm = {
       enable = true;
-      enableFishIntegration = true;
-      extraConfig = builtins.readFile ../dotfiles/wezterm/wezterm.lua;
+      extraConfig = builtins.readFile ../dotfiles/wezterm.lua;
+      package = pkgs.wezterm-master;
     };
   };
 }

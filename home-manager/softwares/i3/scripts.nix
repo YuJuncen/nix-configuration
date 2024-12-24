@@ -11,7 +11,7 @@ get_workspace() {
 }
 select=$(cat <<EOF
 { 
-    "${workspaces.x}": "gnome-terminal",
+    "${workspaces.x}": "wezterm",
     "${workspaces.c}": "vivaldi",
     "${workspaces.v}": "rofi -show codenv",
     "${workspaces.virt}": "virt-manager"

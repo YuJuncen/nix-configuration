@@ -1,8 +1,6 @@
 { ... }: {
   home.sessionVariables = {
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
     QT_AUTO_SCREEN_SCALE_FACTOR = 1;
     QT_ENABLE_HIGHDPI_SCALING = 1;
   };
@@ -15,8 +13,11 @@
     "Xft.antialias" = 1;
     "Xft.rgba" = "rgb";
   };
-  gtk.gtk4.extraConfig = {
-    gtk-font-name = "PingFang CJK SC 6";
-    gtk-xft-dpi = 196608 / 2;
+  services.xsettingsd = {
+    enable = true;
+    settings = {
+      "Gdk/WindowScalingFactor" = 2;
+      "Gdk/UnscaledDPI" = 98340;
+    };
   };
 }

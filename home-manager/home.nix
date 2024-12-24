@@ -47,6 +47,7 @@
 
         cider
         calibre
+        goldendict-ng
         thunderbird
 
         pavucontrol
@@ -70,14 +71,17 @@
         zoom-us
         feishu
         slack
-        goldendict-ng
+
         ffmpeg
+        obs-studio
+        wireshark
+
+        yesplaymusic
       ] ++ (with unstable; [
         vivaldi
         nautilus
         zenity
         vscode
-        yesplaymusic
         netease-cloud-music-gtk
         gnome-system-monitor
       ]);
@@ -86,6 +90,7 @@
         x11.enable = true;
         package = pkgs.yaru-theme;
         name = "Yaru";
+        size = 64;
       };
       file = import ./softwares/i3/scripts.nix ctx //
         import ./util-scripts.nix // {

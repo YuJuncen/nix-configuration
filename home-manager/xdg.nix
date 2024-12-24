@@ -1,4 +1,11 @@
-{ ... }: {
+{ pkgs, ... }: {
+  xdg.portal.enable = true;
+  xdg.portal.xdgOpenUsePortal = true;
+  xdg.portal.extraPortals = [
+    pkgs.xdg-desktop-portal-kde
+    pkgs.xdg-desktop-portal-gtk
+  ];
+  xdg.portal.config.common.default = [ "kde" ];
   xdg.mime.enable = true;
   xdg.mimeApps = {
     enable = true;

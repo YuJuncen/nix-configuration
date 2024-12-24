@@ -11,9 +11,14 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
       flake = true;
     };
+
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, wezterm, ... }@attrs:
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
@@ -43,6 +48,7 @@
                       noto-fonts-no-va = import ./derivations/noto-fonts-no-va super;
                       rofi-gpaste = import ./derivations/rofi-gpaste super;
                       goldendict-ng-debug = import ./derivations/goldendict-ng-debug.nix super;
+                      wezterm-master = wezterm.packages.${super.pkgs.system}.default;
                     };
                     feishu-latest = self: super: {
                       feishu = super.feishu.overrideAttrs (_: rec {
