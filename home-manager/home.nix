@@ -78,6 +78,7 @@
 
         yesplaymusic
       ] ++ (with unstable; [
+
         vivaldi
         nautilus
         zenity

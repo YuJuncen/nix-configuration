@@ -7,6 +7,7 @@
   imports =
     [
       ../modules/sing-box
+      ../modules/xiccd.nix
 
       ./use-tuna-mirror.nix
       ./polkit.nix
@@ -282,6 +283,7 @@
 
 
   services.gnome.gnome-keyring.enable = true;
+  services.colord.enable = true;
 
   # Nearly always open bluetooth.
   hardware.bluetooth.enable = true;
@@ -310,9 +312,15 @@
   services.gvfs.enable = true;
   services.dbus.enable = true;
   security.rtkit.enable = true;
-  services.self-hosted.sing-box = {
-    enable = true;
-    configFile = "/var/lib/sing-box/config.json";
+  services.self-hosted = {
+    sing-box = {
+      enable = true;
+      configFile = "/var/lib/sing-box/config.json";
+    };
+    xiccd = {
+      enable = true;
+      package = unstable.xiccd;
+    };
   };
 
   networking.hostName = "structure";
