@@ -33,7 +33,7 @@ config.keys = {
         key = 'x', mods = 'ALT', action = wezterm.action.ActivateCommandPalette
     },
 {
-        key = 'r', mods = 'CTRL', action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|DOMAINS' }
+        key = 'r', mods = 'CTRL|SHIFT', action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|DOMAINS' }
     }
 }
 config.enable_scroll_bar = true

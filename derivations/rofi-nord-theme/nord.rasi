@@ -48,6 +48,8 @@ inputbar {
     padding:    8px 12px;
     spacing:    12px;
     children:   [ prompt, entry ];
+    border: 0 0 0 10px; 
+    border-color: @background-lighter;
 }
 
 prompt, entry, element-text, element-icon {
@@ -65,7 +67,12 @@ listview {
     fixed-height:   false;
 }
 
-element {
+message {
+    border: 0 0 0 10px; 
+    border-color: @primary-dim;
+}
+
+element, message {
     padding:    16px;
     spacing:    16px;
 }

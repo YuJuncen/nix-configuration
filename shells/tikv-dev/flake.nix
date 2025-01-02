@@ -28,7 +28,7 @@
             PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
             PROTOC = "${pkgs.protobuf3_21}/bin/protoc";
             shellHook = ''
-              PYTHONPATH=${python-env}/${python-env.sitePackages}
+              export CXXFLAGS='--std=c++2a -include cstdint'
             '';
           };
         }

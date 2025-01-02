@@ -77,8 +77,9 @@
         wireshark
 
         yesplaymusic
-      ] ++ (with unstable; [
 
+        xiccd
+      ] ++ (with unstable; [
         vivaldi
         nautilus
         zenity

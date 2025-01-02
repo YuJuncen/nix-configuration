@@ -121,6 +121,10 @@ let
       command = "dbus-update-activation-environment --all";
       notification = false;
     }
+    {
+      command = "${pkgs.xiccd}/bin/xiccd";
+      notification = false;
+    }
   ];
   colorSchema = with colors; ''
     #                       Background          Border              Text     Indictor           Child Boarder 

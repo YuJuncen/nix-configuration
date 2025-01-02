@@ -1,14 +1,14 @@
 {pkgs, lib, config, ...}:
 
 let   
-  cfg = config.services.self-hosted.sing-box;
+  cfg = config.services.self-hosted.xiccd;
   opts = {...}:
   {
     options = {
       enable = lib.mkEnableOption "xiccd";
       package = lib.mkOption {
           type = lib.types.package;
-          default = pkgs.sing-box;
+          default = pkgs.xiccd;
       };
     };
   };
@@ -20,7 +20,7 @@ in
     systemd.services.xiccd = {
    description = "Xiccd Screen Color Profiler";
    serviceConfig = {
-     ExecStart = "${cfg.xiccd}/bin/xiccd";
+     ExecStart = "${cfg.package}/bin/xiccd";
      ExecStop = "pkill xiccd";
      Restart = "always";
    };
