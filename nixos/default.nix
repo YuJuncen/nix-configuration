@@ -11,6 +11,7 @@
       ./use-tuna-mirror.nix
       ./polkit.nix
       ./nix-ld.nix
+      ./nautilus.nix
     ];
 
   # Enable OpenGL
@@ -140,7 +141,6 @@
     bluetuith
 
     gtk4
-    cage
   ];
 
   nixpkgs.config.allowUnfree = true;

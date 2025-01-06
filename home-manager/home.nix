@@ -80,8 +80,8 @@
 
         xiccd
       ] ++ (with unstable; [
+        cage
         vivaldi
-        nautilus
         zenity
         vscode
         netease-cloud-music-gtk
