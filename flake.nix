@@ -2,9 +2,9 @@
   description = "Hillium's personal NixOS configuration.";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     "home-manager" = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-unstable = {
@@ -68,7 +68,6 @@
               overlayConfig
               ./nixos
               ./uncommon/hardware-config.nix
-              ./uncommon/nvidia.nix
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;

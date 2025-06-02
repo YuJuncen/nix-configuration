@@ -76,12 +76,12 @@
         obs-studio
         wireshark
 
-        yesplaymusic
-
         xiccd
+        vivaldi
+
+        rocmPackages.rocm-smi
       ] ++ (with unstable; [
         cage
-        vivaldi
         zenity
         vscode
         netease-cloud-music-gtk
