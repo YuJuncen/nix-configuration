@@ -13,7 +13,6 @@ select=$(cat <<EOF
     "Browsers": "${pkgs.gtk3}/bin/gtk-launch firefox",
     "1": "${pkgs.gtk3}/bin/gtk-launch code",
     "2": "${pkgs.gtk3}/bin/gtk-launch google-chrome",
-    "10": "${pkgs.gtk3}/bin/gtk-launch virt-manager"
 }
 EOF
 )

@@ -13,8 +13,7 @@ select=$(cat <<EOF
 { 
     "${workspaces.x}": "wezterm",
     "${workspaces.c}": "vivaldi",
-    "${workspaces.v}": "rofi -show codenv",
-    "${workspaces.virt}": "virt-manager"
+    "${workspaces.v}": "rofi -show codenv"
 }
 EOF
 )

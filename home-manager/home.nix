@@ -26,7 +26,6 @@
 
         openssl
         unzip
-        virt-manager
         xclip
         jq
         gh
@@ -84,6 +83,8 @@
         cage
         zenity
         vscode
+        qqmusic
+        awscli2
         netease-cloud-music-gtk
         gnome-system-monitor
       ]);

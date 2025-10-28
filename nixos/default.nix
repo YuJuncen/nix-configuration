@@ -151,7 +151,7 @@
               <string>sans-serif</string>
             </test>
             <edit mode="prepend" binding="strong" name="family">
-              <string>Noto Sans</string>
+              <string>IBM Plex Sans SC</string>
             </edit>
           </match>
           <match target="pattern">
@@ -159,7 +159,7 @@
               <string>serif</string>
             </test>
             <edit mode="prepend" binding="strong" name="family">
-              <string>Noto Serif</string>
+              <string>Noto Serif SC</string>
             </edit>
           </match>
           <match target="pattern">
